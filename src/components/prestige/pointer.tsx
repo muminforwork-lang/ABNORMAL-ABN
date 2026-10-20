@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 /**
  * Bespoke pointer for mouse/trackpad visitors: a precise crimson dot with a
@@ -13,21 +14,7 @@ import { useEffect, useRef, useState } from 'react';
 export function PointerLayer() {
   const ringRef = useRef<HTMLDivElement | null>(null);
   const dotRef = useRef<HTMLDivElement | null>(null);
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const sync = () => setEnabled(fine.matches && !reduce.matches);
-
-    sync();
-    fine.addEventListener('change', sync);
-    reduce.addEventListener('change', sync);
-    return () => {
-      fine.removeEventListener('change', sync);
-      reduce.removeEventListener('change', sync);
-    };
-  }, []);
+  const { enabled } = useEffects();
 
   useEffect(() => {
     if (!enabled) return;
@@ -144,18 +131,18 @@ export function PointerLayer() {
 
 /**
  * A soft light that follows the mouse inside the home hero. It only writes two
- * CSS custom properties — the gradient itself is handled by CSS, so this stays
- * on the compositor and costs almost nothing.
+ * CSS custom properties. Its frame loop sleeps once the light settles, and
+ * the shared policy removes the light and listeners on ineligible devices.
  */
 export function HeroSpotlight() {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const node = ref.current;
     const host = node?.closest<HTMLElement>('[data-home]');
     if (!host) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     let targetX = 62;
     let targetY = 38;
@@ -190,7 +177,7 @@ export function HeroSpotlight() {
       host.style.removeProperty('--spot-x');
       host.style.removeProperty('--spot-y');
     };
-  }, []);
+  }, [enabled]);
 
   return <div ref={ref} className="hero-spotlight" aria-hidden="true" />;
 }

@@ -47,7 +47,9 @@ export const WHATSAPP_URL = 'https://wa.me/message/4FO2O2VCWZZQB1';
  * ------------------------------------------------------------------------ */
 
 export type PaymentMethod = {
-  id: string;
+  id: 'bkash' | 'nagad' | 'binance';
+  /** Currency accepted for the listed amount; never an exchange-rate conversion. */
+  currency: 'BDT' | 'USD';
   /** Method name, e.g. 'bKash'. */
   name: string;
   /** Optional label under the name, e.g. 'Personal'. */
@@ -65,6 +67,7 @@ export type PaymentMethod = {
 export const PAYMENT_METHODS: PaymentMethod[] = [
   {
     id: 'bkash',
+    currency: 'BDT',
     name: 'bKash',
     kind: 'Personal',
     fieldLabel: 'Account',
@@ -74,6 +77,7 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
   },
   {
     id: 'nagad',
+    currency: 'BDT',
     name: 'Nagad',
     fieldLabel: 'Account',
     value: '+880 1629-835648',
@@ -82,6 +86,7 @@ export const PAYMENT_METHODS: PaymentMethod[] = [
   },
   {
     id: 'binance',
+    currency: 'USD',
     name: 'Binance',
     fieldLabel: 'Account ID',
     value: '1220374728',
@@ -133,20 +138,20 @@ export const CATALOG_HREF = '/products';
 
 export const ORDER_STEPS = [
   {
-    title: 'Pick your product and duration',
-    body: 'Open a product page and choose the exact duration you want. The price you see is the price you pay.',
+    title: 'Confirm with support before paying',
+    body: 'Choose the exact product and duration. Ask support to confirm availability, the listed amount and the payment method before you send money.',
   },
   {
-    title: 'Send the payment',
-    body: 'Send the exact amount to the selected bKash, Nagad or Binance account. Keep your transaction ID/number and, for bKash/Nagad, the sender phone number.',
+    title: 'Send the confirmed payment',
+    body: 'After support confirms, send the exact amount to the selected bKash, Nagad or Binance account. Keep the transaction ID and, for bKash/Nagad, the sender phone number.',
   },
   {
-    title: 'Submit the order on this website',
-    body: 'Enter the payment method, sender number for bKash/Nagad, and transaction ID/number. No account is needed and the website does not save your details.',
+    title: 'Prepare your payment summary',
+    body: 'Choose the duration and payment method you used, then enter the transaction ID and sender number if required. This website only prepares a local summary; nothing is sent to support.',
   },
   {
-    title: 'Create a ticket and send proof',
-    body: 'Copy the order summary, open Discord and create a ticket or message us on Telegram or WhatsApp, paste the details and attach your payment proof. We deliver after manual verification.',
+    title: 'Send the summary and proof to support',
+    body: 'Copy the summary, then create a Discord ticket or message us on Telegram or WhatsApp. Paste the details and attach your payment proof. Staff verify payment manually before delivery.',
   },
 ] as const;
 

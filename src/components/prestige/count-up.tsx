@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 /**
  * Counts up to a number the first time it scrolls into view (or immediately on
@@ -17,20 +18,17 @@ export function CountUp({
   duration?: number;
   className?: string;
 }) {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLSpanElement | null>(null);
   const [display, setDisplay] = useState(value);
 
-  useLayoutEffect(() => {
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce || value <= 0) return;
-    setDisplay(0);
-  }, [value]);
-
   useEffect(() => {
     const node = ref.current;
-    if (!node || value <= 0) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (typeof IntersectionObserver === 'undefined') return;
+    if (!enabled || !node || value <= 0 || typeof IntersectionObserver === 'undefined') {
+      setDisplay(value);
+      return;
+    }
+    setDisplay(0);
 
     let started = false;
     let raf = 0;
@@ -75,11 +73,11 @@ export function CountUp({
       window.clearTimeout(kick);
       window.clearTimeout(snap);
     };
-  }, [value, duration]);
+  }, [enabled, value, duration]);
 
   return (
     <span ref={ref} className={`tabular-nums ${className}`}>
-      {display}
+      {enabled ? display : value}
     </span>
   );
 }

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/' },
 };
 
-/** The home page is a single screen: no scrolling, no sections. */
+/** A compact hero that can grow when a short screen or larger text needs room. */
 export default function HomePage() {
   return <Hero />;
 }

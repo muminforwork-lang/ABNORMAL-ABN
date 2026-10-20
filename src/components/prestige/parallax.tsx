@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffects } from '@/components/effects-provider';
+import { watchMediaQuery } from '@/lib/effects';
 
 /**
  * Soft scroll parallax. Desktop only, and only when motion is welcome: the
@@ -17,17 +19,22 @@ export function Parallax({
   speed?: number;
   className?: string;
 }) {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(min-width: 1024px)').matches) return;
+    const wide = window.matchMedia('(min-width: 1024px)');
 
     let raf = 0;
     const update = () => {
       raf = 0;
+      if (!wide.matches) {
+        node.style.removeProperty('transform');
+        return;
+      }
       const rect = node.getBoundingClientRect();
       const viewport = window.innerHeight;
       if (rect.bottom < -200 || rect.top > viewport + 200) return;
@@ -42,13 +49,15 @@ export function Parallax({
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+    const stopQuery = watchMediaQuery(wide, onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      stopQuery();
       window.cancelAnimationFrame(raf);
       node.style.transform = '';
     };
-  }, [speed]);
+  }, [enabled, speed]);
 
   return (
     <div ref={ref} className={`parallax ${className}`}>

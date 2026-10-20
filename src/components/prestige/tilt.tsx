@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 /**
  * A 3D card shell. It writes --rx / --ry / --mx / --my and CSS does the rest,
@@ -19,13 +20,13 @@ export function Tilt({
   max?: number;
   glare?: boolean;
 }) {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     let rect: DOMRect | null = null;
     const measure = () => {
@@ -66,8 +67,9 @@ export function Tilt({
       node.removeEventListener('pointerleave', onLeave);
       window.removeEventListener('resize', measure);
       node.classList.remove('is-tilting');
+      for (const property of ['--rx', '--ry', '--mx', '--my']) node.style.removeProperty(property);
     };
-  }, [max]);
+  }, [enabled, max]);
 
   return (
     <div ref={ref} className={`tilt ${glare ? 'tilt--glare' : ''} ${className}`}>

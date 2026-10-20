@@ -1,9 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react';
-import { createPortal } from 'react-dom';
-import { lockScroll, unlockScroll } from '@/components/prestige/scroll-lock';
+import { useCallback, useEffect, useRef, useState, type ReactNode, type KeyboardEvent } from 'react';
+import { Modal } from '@/components/modal';
+import { useHydrated } from '@/components/use-hydrated';
+import { useEffects } from '@/components/effects-provider';
 
 export type GalleryImage = {
   src: string;
@@ -40,21 +41,23 @@ export function ProductGallery({
   label?: string;
   badges?: ReactNode;
 }) {
+  const hydrated = useHydrated();
+  const { enabled } = useEffects();
   const [view, setView] = useState(0);
   const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
   const frameRef = useRef<HTMLButtonElement | null>(null);
   const frameBox = useRef<HTMLDivElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const thumbs = images.length > 1 ? images : [];
+  const returnFocus = useCallback(() => frameRef.current, []);
 
   // The light inside the frame follows the pointer. Two CSS variables, no
-  // layout work, and it simply does not run for reduced-motion visitors.
+  // layout work. The shared policy also handles touch and live changes.
   useEffect(() => {
+    if (!enabled) return;
     const node = frameBox.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const onMove = (event: PointerEvent) => {
       const rect = node.getBoundingClientRect();
@@ -63,8 +66,12 @@ export function ProductGallery({
     };
 
     node.addEventListener('pointermove', onMove, { passive: true });
-    return () => node.removeEventListener('pointermove', onMove);
-  }, []);
+    return () => {
+      node.removeEventListener('pointermove', onMove);
+      node.style.removeProperty('--gx');
+      node.style.removeProperty('--gy');
+    };
+  }, [enabled]);
 
   const openViewer = useCallback((index: number) => {
     setLightboxIndex(index);
@@ -73,7 +80,6 @@ export function ProductGallery({
 
   const close = useCallback(() => {
     setOpen(false);
-    window.setTimeout(() => frameRef.current?.focus(), 40);
   }, []);
 
   const step = useCallback(
@@ -86,23 +92,13 @@ export function ProductGallery({
     [images.length],
   );
 
-  useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') close();
-      if (event.key === 'ArrowRight') step(1);
-      if (event.key === 'ArrowLeft') step(-1);
-    };
-    window.addEventListener('keydown', onKey);
-    lockScroll();
-    closeRef.current?.focus();
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      unlockScroll();
-    };
-  }, [open, close, step]);
+  const onViewerKey = (event: KeyboardEvent<HTMLDialogElement>) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      step(event.key === 'ArrowRight' ? 1 : -1);
+    }
+  };
 
   const pick = (index: number) => {
     setView(index);
@@ -131,6 +127,7 @@ export function ProductGallery({
           ref={frameRef}
           type="button"
           onClick={() => openViewer(view)}
+          disabled={!hydrated}
           className="gallery__stage"
           aria-label={`Open ${name} artwork full screen`}
           data-cursor="view"
@@ -171,6 +168,7 @@ export function ProductGallery({
               role="tab"
               aria-selected={view === index}
               onClick={() => pick(index)}
+              disabled={!hydrated}
               className="gallery__thumb"
               data-active={view === index ? 'true' : 'false'}
             >
@@ -186,10 +184,16 @@ export function ProductGallery({
         </div>
       ) : null}
 
-      {mounted && open && current
-        ? createPortal(
-            <div className="lightbox" role="dialog" aria-modal="true" aria-label={`${name} artwork`}>
-          <button type="button" className="lightbox__backdrop" onClick={close} aria-label="Close artwork" />
+      <Modal
+        open={open && !!current}
+        onClose={close}
+        initialFocusRef={closeRef}
+        returnFocus={returnFocus}
+        className="lightbox"
+        label={`${name} artwork`}
+        onKeyDown={onViewerKey}
+      >
+        <div className="lightbox__backdrop" data-dialog-backdrop aria-hidden="true" />
           <div className="lightbox__panel">
             <div className="lightbox__bar">
               <span className="lightbox__cap">
@@ -208,7 +212,7 @@ export function ProductGallery({
 
             <div className="lightbox__stage">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img key={current.src} src={current.src} alt={current.alt} className="lightbox__img" />
+              {current ? <img key={current.src} src={current.src} alt={current.alt} className="lightbox__img" /> : null}
             </div>
 
             {images.length > 1 ? (
@@ -233,13 +237,10 @@ export function ProductGallery({
                 </button>
               </div>
             ) : (
-              <p className="lightbox__hint">Press Esc or click anywhere to close</p>
+              <p className="lightbox__hint">Press Esc or click outside the artwork to close</p>
             )}
           </div>
-        </div>,
-            document.body,
-          )
-        : null}
+      </Modal>
     </div>
   );
 }

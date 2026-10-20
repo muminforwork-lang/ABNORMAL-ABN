@@ -1,0 +1,1300 @@
+{
+  "release_scope": "User-approved completion of batches 1\u20133; not completion of all 77 actionable recommendations.",
+  "baseline_provenance": "Values from the earlier delivered Phase 1 audit/session record, not remeasured in this batch. Original report files are absent from the restored filesystem.",
+  "measurement_method": "15 final local production runs; fresh Chromium profile per run, warm local server, simulated throttling. Three-run medians per case. Same Lighthouse version and stated device/network/CPU presets as the earlier audit, not a controlled same-time hardware comparison.",
+  "limitations": [
+    "Sandbox/software-rendered lab results, not deployed or physical-device measurements.",
+    "Historical raw baseline reports are not in this restored filesystem.",
+    "Performance remains low; product/payment TBT medians worsened. No across-the-board performance or field-INP improvement is claimed."
+  ],
+  "cases": [
+    {
+      "name": "mobile-home",
+      "mode": "mobile",
+      "route": "/",
+      "historical_before": {
+        "mode": "mobile",
+        "route": "/",
+        "score": 44,
+        "lcp_seconds": 5.053,
+        "tbt_seconds": 7.46,
+        "cls": 0
+      },
+      "final_median": {
+        "performanceScore": 48,
+        "lcpMs": 5274.370000000001,
+        "tbtMs": 6009.252,
+        "cls": 0
+      },
+      "runs": [
+        {
+          "name": "mobile-home",
+          "mode": "mobile",
+          "route": "/",
+          "run": 1,
+          "fetchedAt": "2026-10-20T18:10:27.855Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2395.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 46,
+          "lcpMs": 5392.998000000001,
+          "tbtMs": 7682.1680000000015,
+          "cls": 0,
+          "fcpMs": 1567.998,
+          "speedIndexMs": 4790.6753000000635,
+          "warnings": [],
+          "reportSha256": "ee889eb9ee08e571bcb3d04337baca089364678a2f717ed66ad6e61fd3de8dd4"
+        },
+        {
+          "name": "mobile-home",
+          "mode": "mobile",
+          "route": "/",
+          "run": 2,
+          "fetchedAt": "2026-10-20T18:10:37.595Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2273,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 48,
+          "lcpMs": 5274.370000000001,
+          "tbtMs": 6009.252,
+          "cls": 0,
+          "fcpMs": 1514.622,
+          "speedIndexMs": 4198.709400000371,
+          "warnings": [],
+          "reportSha256": "237fa5b9fc7530a092284d8a6bde274ba739351a8863482e8807f8cccd8313a9"
+        },
+        {
+          "name": "mobile-home",
+          "mode": "mobile",
+          "route": "/",
+          "run": 3,
+          "fetchedAt": "2026-10-20T18:10:46.489Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2417,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 48,
+          "lcpMs": 5214.83,
+          "tbtMs": 5804.567999999999,
+          "cls": 0,
+          "fcpMs": 1523.8980000000001,
+          "speedIndexMs": 4102.992192000043,
+          "warnings": [],
+          "reportSha256": "a90b75d9e18dc43718c47edafd01e2038f4b4f9864e3679ec3880094a153f89e"
+        }
+      ]
+    },
+    {
+      "name": "mobile-catalog",
+      "mode": "mobile",
+      "route": "/products",
+      "historical_before": {
+        "mode": "mobile",
+        "route": "/products",
+        "score": 44,
+        "lcp_seconds": 5.341,
+        "tbt_seconds": 7.03,
+        "cls": 0
+      },
+      "final_median": {
+        "performanceScore": 48,
+        "lcpMs": 4772.1775,
+        "tbtMs": 6896.909,
+        "cls": 0
+      },
+      "runs": [
+        {
+          "name": "mobile-catalog",
+          "mode": "mobile",
+          "route": "/products",
+          "run": 1,
+          "fetchedAt": "2026-10-20T18:10:55.350Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2468,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 46,
+          "lcpMs": 4981.477499999999,
+          "tbtMs": 6896.909,
+          "cls": 0,
+          "fcpMs": 1668.8864999999998,
+          "speedIndexMs": 5827.524077473796,
+          "warnings": [],
+          "reportSha256": "e427eb1137fae0476946e792b1f0ef08ab8a65f2c698e08bd66d3381abe49b8d"
+        },
+        {
+          "name": "mobile-catalog",
+          "mode": "mobile",
+          "route": "/products",
+          "run": 2,
+          "fetchedAt": "2026-10-20T18:11:16.349Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2297.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 48,
+          "lcpMs": 4772.1775,
+          "tbtMs": 6652.129,
+          "cls": 0,
+          "fcpMs": 1678.3065000000001,
+          "speedIndexMs": 5426.061607427751,
+          "warnings": [],
+          "reportSha256": "fa4545d3c99f7a75de63a47de10b98e87cab94c9966f1e0e0db14269b56d2145"
+        },
+        {
+          "name": "mobile-catalog",
+          "mode": "mobile",
+          "route": "/products",
+          "run": 3,
+          "fetchedAt": "2026-10-20T18:11:37.278Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2361,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 49,
+          "lcpMs": 4770.57,
+          "tbtMs": 7443.771999999999,
+          "cls": 0,
+          "fcpMs": 1677.342,
+          "speedIndexMs": 4607.7811800000645,
+          "warnings": [],
+          "reportSha256": "e73e8afe3a0afa112a2e51a635ba8fab2035099c90aa4f35012bf07af3b20562"
+        }
+      ]
+    },
+    {
+      "name": "mobile-product",
+      "mode": "mobile",
+      "route": "/products/br-mods-pc",
+      "historical_before": {
+        "mode": "mobile",
+        "route": "/products/br-mods-pc",
+        "score": 46,
+        "lcp_seconds": 4.818,
+        "tbt_seconds": 7.054,
+        "cls": 0
+      },
+      "final_median": {
+        "performanceScore": 49,
+        "lcpMs": 4621.123,
+        "tbtMs": 7921.766000000002,
+        "cls": 0
+      },
+      "runs": [
+        {
+          "name": "mobile-product",
+          "mode": "mobile",
+          "route": "/products/br-mods-pc",
+          "run": 1,
+          "fetchedAt": "2026-10-20T18:12:47.284Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2411,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 49,
+          "lcpMs": 4668.518500000001,
+          "tbtMs": 7921.766000000002,
+          "cls": 0,
+          "fcpMs": 1510.1009999999999,
+          "speedIndexMs": 4832.52083799988,
+          "warnings": [],
+          "reportSha256": "eb76880dd9007cf7207b61b1f9022f725995c21bddb5eaf42c6c1983bdcab68e"
+        },
+        {
+          "name": "mobile-product",
+          "mode": "mobile",
+          "route": "/products/br-mods-pc",
+          "run": 2,
+          "fetchedAt": "2026-10-20T18:13:01.681Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2349,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 48,
+          "lcpMs": 4621.123,
+          "tbtMs": 8265.228,
+          "cls": 0,
+          "fcpMs": 1525.158,
+          "speedIndexMs": 5915.418814105405,
+          "warnings": [],
+          "reportSha256": "0d4fc59b6e13b21fd714ef869893d5fc2469f19aad0a255f83159d7939296fe1"
+        },
+        {
+          "name": "mobile-product",
+          "mode": "mobile",
+          "route": "/products/br-mods-pc",
+          "run": 3,
+          "fetchedAt": "2026-10-20T18:13:16.050Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2444.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 50,
+          "lcpMs": 4593.1225,
+          "tbtMs": 5970.91,
+          "cls": 0,
+          "fcpMs": 1509.885,
+          "speedIndexMs": 4801.067860991322,
+          "warnings": [],
+          "reportSha256": "6ccca6ccf77f32e2f8655cb177f054e418bcefaedac7af476e1bc603c5124b25"
+        }
+      ]
+    },
+    {
+      "name": "mobile-payments",
+      "mode": "mobile",
+      "route": "/payments",
+      "historical_before": {
+        "mode": "mobile",
+        "route": "/payments",
+        "score": 45,
+        "lcp_seconds": 4.998,
+        "tbt_seconds": 6.514,
+        "cls": 0
+      },
+      "final_median": {
+        "performanceScore": 47,
+        "lcpMs": 4967.749999999998,
+        "tbtMs": 7101.768,
+        "cls": 0
+      },
+      "runs": [
+        {
+          "name": "mobile-payments",
+          "mode": "mobile",
+          "route": "/payments",
+          "run": 1,
+          "fetchedAt": "2026-10-20T18:13:29.547Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2533.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 46,
+          "lcpMs": 4971.8,
+          "tbtMs": 7472.780000000001,
+          "cls": 0,
+          "fcpMs": 1513.0800000000004,
+          "speedIndexMs": 5844.357551969896,
+          "warnings": [],
+          "reportSha256": "144b9895b175a49712872c9f66e3ffe27780fd2b14a2cc06f97ba3031f5fb11c"
+        },
+        {
+          "name": "mobile-payments",
+          "mode": "mobile",
+          "route": "/payments",
+          "run": 2,
+          "fetchedAt": "2026-10-20T18:13:41.372Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2415,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 48,
+          "lcpMs": 4963.08,
+          "tbtMs": 7101.768,
+          "cls": 0,
+          "fcpMs": 1507.848,
+          "speedIndexMs": 4592.131298000322,
+          "warnings": [],
+          "reportSha256": "0fb37540cf188db9f6c861b17b561368d894938eda1e342b6cc0d397bfd6976b"
+        },
+        {
+          "name": "mobile-payments",
+          "mode": "mobile",
+          "route": "/payments",
+          "run": 3,
+          "fetchedAt": "2026-10-20T18:13:53.196Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Mobile Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2557.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "mobile",
+            "throttling": {
+              "rttMs": 150,
+              "throughputKbps": 1638.4,
+              "requestLatencyMs": 562.5,
+              "downloadThroughputKbps": 1474.5600000000002,
+              "uploadThroughputKbps": 675,
+              "cpuSlowdownMultiplier": 4
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": true,
+              "width": 412,
+              "height": 823,
+              "deviceScaleFactor": 1.75,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 47,
+          "lcpMs": 4967.749999999998,
+          "tbtMs": 6921.4,
+          "cls": 0,
+          "fcpMs": 1510.6499999999999,
+          "speedIndexMs": 5439.63665722847,
+          "warnings": [],
+          "reportSha256": "3e602636a3ac107b42b8f3b32e5f5d634fdfecc7b4df026f96cdaa82fa5a685e"
+        }
+      ]
+    },
+    {
+      "name": "desktop-home",
+      "mode": "desktop",
+      "route": "/",
+      "historical_before": {
+        "mode": "desktop",
+        "route": "/",
+        "score": 59,
+        "lcp_seconds": 1.135,
+        "tbt_seconds": 3.798,
+        "cls": 0
+      },
+      "final_median": {
+        "performanceScore": 62,
+        "lcpMs": 1048.915,
+        "tbtMs": 2912.692,
+        "cls": 0
+      },
+      "runs": [
+        {
+          "name": "desktop-home",
+          "mode": "desktop",
+          "route": "/",
+          "run": 1,
+          "fetchedAt": "2026-10-20T18:14:35.592Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2362,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "desktop",
+            "throttling": {
+              "rttMs": 40,
+              "throughputKbps": 10240,
+              "requestLatencyMs": 0,
+              "downloadThroughputKbps": 0,
+              "uploadThroughputKbps": 0,
+              "cpuSlowdownMultiplier": 1
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": false,
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 62,
+          "lcpMs": 1048.915,
+          "tbtMs": 2798.434,
+          "cls": 0,
+          "fcpMs": 441.34900000000005,
+          "speedIndexMs": 2487.792036916697,
+          "warnings": [],
+          "reportSha256": "d95452c766872df2c9791c9447a7cad3950661531f58573610ad081fde9d3ed9"
+        },
+        {
+          "name": "desktop-home",
+          "mode": "desktop",
+          "route": "/",
+          "run": 2,
+          "fetchedAt": "2026-10-20T18:14:46.613Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2291,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "desktop",
+            "throttling": {
+              "rttMs": 40,
+              "throughputKbps": 10240,
+              "requestLatencyMs": 0,
+              "downloadThroughputKbps": 0,
+              "uploadThroughputKbps": 0,
+              "cpuSlowdownMultiplier": 1
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": false,
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 62,
+          "lcpMs": 1045.77,
+          "tbtMs": 2912.692,
+          "cls": 0,
+          "fcpMs": 427.462,
+          "speedIndexMs": 2570.309067166587,
+          "warnings": [],
+          "reportSha256": "7a01491a8f844fb462b968df72369dc739a46e23fde6ad8b066f9d017bd3388a"
+        },
+        {
+          "name": "desktop-home",
+          "mode": "desktop",
+          "route": "/",
+          "run": 3,
+          "fetchedAt": "2026-10-20T18:14:58.320Z",
+          "lighthouseVersion": "13.5.0",
+          "environment": {
+            "networkUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/153.0.0.0 Safari/537.36",
+            "hostUserAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/153.0.8010.0 Safari/537.36",
+            "benchmarkIndex": 2454.5,
+            "credits": {}
+          },
+          "settings": {
+            "output": "json",
+            "maxWaitForFcp": 30000,
+            "maxWaitForLoad": 45000,
+            "pauseAfterFcpMs": 1000,
+            "pauseAfterLoadMs": 1000,
+            "networkQuietThresholdMs": 1000,
+            "cpuQuietThresholdMs": 1000,
+            "formFactor": "desktop",
+            "throttling": {
+              "rttMs": 40,
+              "throughputKbps": 10240,
+              "requestLatencyMs": 0,
+              "downloadThroughputKbps": 0,
+              "uploadThroughputKbps": 0,
+              "cpuSlowdownMultiplier": 1
+            },
+            "throttlingMethod": "simulate",
+            "screenEmulation": {
+              "mobile": false,
+              "width": 1440,
+              "height": 900,
+              "deviceScaleFactor": 1,
+              "disabled": false
+            },
+            "emulatedUserAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+            "auditMode": false,
+            "gatherMode": false,
+            "clearStorageTypes": [
+              "file_systems",
+              "shader_cache",
+              "service_workers",
+              "cache_storage"
+            ],
+            "disableStorageReset": false,
+            "debugNavigation": false,
+            "channel": "node",
+            "usePassiveGathering": false,
+            "disableFullPageScreenshot": false,
+            "skipAboutBlank": false,
+            "blankPage": "about:blank",
+            "ignoreStatusCode": false,
+            "locale": "en-US",
+            "blockedUrlPatterns": null,
+            "additionalTraceCategories": null,
+            "extraHeaders": null,
+            "precomputedLanternData": null,
+            "onlyAudits": null,
+            "onlyCategories": [
+              "performance"
+            ],
+            "skipAudits": null
+          },
+          "performanceScore": 62,
+          "lcpMs": 1116.5375,
+          "tbtMs": 3102.8849999999998,
+          "cls": 0,
+          "fcpMs": 445.9225,
+          "speedIndexMs": 2697.789939666646,
+          "warnings": [],
+          "reportSha256": "357a42a2b154704a294edf58cd04cefb3a4fb46f6bbdd4511901c78a1447eef9"
+        }
+      ]
+    }
+  ],
+  "final_checks": {
+    "typecheck": "passed",
+    "tests_passed": 51,
+    "tests_failed": 0,
+    "production_pages": 40,
+    "diff_check": "passed",
+    "log_sha256": "c76c372d710a54484b8dbed13359155ae32ca1537c67bacdd3feef17c270751d"
+  },
+  "source_sha256": {
+    "src/app/globals.css": "a5c50c0764ae4f24a0225bf6f8e651bffa2f3e805bf972d15e702cae5c1f9162",
+    "src/app/layout.tsx": "fadf31caa2a5a01de5b9cec4f75cb62f1cdbf1b0f3feee2de2a636fbbbf2855d",
+    "src/app/order-confirmation/page.tsx": "cb9011ca37cfec1739edf7d4912b65d77855d398143cd0fb10fc9f6c316926b8",
+    "src/app/page.tsx": "8e79e4933c09bae5394eaa8cd5a9b1f534ed7d8bdc513016b1afbc5aee37491a",
+    "src/app/payments/page.tsx": "d9a3a59708b51a81f691eb95f2a6a97dc7f1342aa00927de8e7d996b940240c3",
+    "src/app/products/[slug]/page.tsx": "4375bbb79d253d242d7f1aa349fb05508db182aad91ecb91d785d64006893f45",
+    "src/components/catalog-explorer.tsx": "43cc22ebd5117ee27ce11ed4635f9a10fa6b050599b766dcd76ec93c8042a63f",
+    "src/components/character-stage.tsx": "4ffbc0350c421cbd933d7329a597ceabfc5ce4a5b46348a9e2b3d6a70b9e92fc",
+    "src/components/copy-button.tsx": "cb84a8b0601b91b7637a16612468875eb1e237b73c109747439f12f94ede9ccc",
+    "src/components/effects-provider.tsx": "81331df90f71fe66dc107d495f562aae102cc4cbdc844a0501347be0ab9c0675",
+    "src/components/hero.tsx": "77c0966d3aa1463442bf0ef7836f9a19879a5653c2033b7ea91ef46bd7dbf7c8",
+    "src/components/modal.tsx": "60a78d2f9ddbd9c9edf6218ac684d48bc0e09701b54bf94615ce0a00356fad9b",
+    "src/components/order-confirmation-client.tsx": "785463df9d8dbc7d600fd4d0cd3ad8c0a7d797c970a4d60477bd62c1d859bc95",
+    "src/components/prestige/clock.tsx": "8b3a0c64ddaadead0a31a61b435a6e2ad6b3709835c7ee3f1cb4772d8cd3147a",
+    "src/components/prestige/count-up.tsx": "c584689e8d078a5e534bf1445d97ce1ee494fecdd8fffb399368bf09fb01ac75",
+    "src/components/prestige/featured-drop.tsx": "a7992765f3e23d4258adf9f86c33ae30e40d21ed2494adf1fabf04244de2a992",
+    "src/components/prestige/magnetic.tsx": "8e988e5dc13b445013e02b4b55458f8c21a179e9e8712ed0b1eeadaf07153b88",
+    "src/components/prestige/parallax.tsx": "584d9c4826fb4ece71e35cf3d708036eaf7e395aafcb48fff2ef83e0015d7793",
+    "src/components/prestige/pointer.tsx": "631c5814befc57804b63e61edb67178de4a4696df9122aa7b6b89bd0c4e2799c",
+    "src/components/prestige/product-gallery.tsx": "5a1749f154c05eb9393d5890e2cc5922365d70fc5bb75d20ee5a30dd9fa742e0",
+    "src/components/prestige/scanlines.tsx": "05d7dd649f5075400f09e93a207d2d6f35e61ab287fac61fe3e9f75d4871e34c",
+    "src/components/prestige/scroll-hud.tsx": "1f7533d4812006da8fa099dec0d0ea1d5faa3b7d744caef12c48336d28982986",
+    "src/components/prestige/scroll-lock.ts": "c2f094a6ebf1bfd36bf9317c42a1a476562605f1608013070395ee316cb0236b",
+    "src/components/prestige/site-intro.tsx": "5c33dd5f1e29319c153dc0b8b7eb14e4f0c9f4034a653e1e807ddc0ae082e4f6",
+    "src/components/prestige/split-text.tsx": "608b90804f81f3a7f3051e6b876c1dbb50eb13db8c2d8864423a7d1bf1609f76",
+    "src/components/prestige/tilt.tsx": "dec079f5f30ec1ca35c83b3670146b216f32260dec0cbc334a39e65f6f7bc4bc",
+    "src/components/price-list.tsx": "9464fe8b86eeced6218ecc14a6cc55750a1525e51142ae1ccdbd4a729480604d",
+    "src/components/purchase-form.tsx": "c76a2e24be0e0bf19d057d3efe83506bbd2453e1c0485ed7a034c8397d2fd227",
+    "src/components/purchase-selection.tsx": "452409f13c36a3ca447e264ed169ccf1a1cbbce7534dca28bf9480ceab597f7f",
+    "src/components/reveal.tsx": "0ae07ea08811a61ffa045f9ddf7fc931279b3d3b99c1d255d54c763f24c1128e",
+    "src/components/site-header.tsx": "b8bdf13121c149d2654d1e286fc7b8cbf69e5754d6947d5579bab43c576a45f9",
+    "src/components/smooth-scroll.tsx": "90db2df95ce9010f7da815afc1901071fda9ab875cd361c2b19f4d6d649201ec",
+    "src/components/support-panel.tsx": "97b3552666d58a3444a6ec1635e013c3bd8fcb0d2bf60ab8767975dd47385d0e",
+    "src/components/theme-controller.tsx": "12a601aeb14e2535975e9b03e545e8a91db76ee5624e2368e6d4424de489062f",
+    "src/components/use-hydrated.ts": "238e2e297297d54444e835bc9b6b48a7d3440868833382fcb84a6b50c496014e",
+    "src/data/store.ts": "e105cd03a94c7c48be85b82c796b06c145824f4566cc46897a5e64593639d137",
+    "src/lib/dialog.ts": "62a50ba0ce746d6d14406c36ee2957ae72bb73f9f44d767a934f0113c2b1f736",
+    "src/lib/effects.ts": "d040988ffca73a37ec76ce2a272c591913252f3354392e92fd7fc9b07484971b",
+    "src/lib/order-summary.ts": "135c2778af233095a1b62a954afed2d3aed689540acee66f526f8c606f2fd9af",
+    "src/lib/purchase-validation.ts": "1985a4059937e4e2abc7b50d79d4a61c774db6a7e372b09941bce8409b35ab1c",
+    "src/lib/purchase.ts": "e16feb6b578595f5c81bf38ad3852b8aa76fa7b73cffbc484f463f47fd01541a",
+    "tests/effects.test.ts": "ef19a82fae0f52e2ec45e44463172c54242914b98ce73bb515b4fcca538f3d2d",
+    "tests/order-summary.test.ts": "0cb7a5d49f32335f59c5d37c0fd5b626d7ee7ff9c23f5240f9d352ff8b1c26aa",
+    "tests/purchase-validation.test.ts": "82f32b899100b0c065119e2bd96cdf45c59a7eedd50eaa8891bb934c2ac87f53",
+    "tests/purchase.test.ts": "bc99f842f63ad19ffd851751021c3af7010f75b3d0ccdd25a063751102dd284d",
+    "tests/scroll-lock.test.ts": "166396572c6e88f74e9e0d5a2a69684e1977ff82f39e6bb4fb8cfec8cb7eac76",
+    "tests/store-contract.test.ts": "4cc03c482cc957198850bf2e9a93ebda52aa0f57876b5e4cae88a29aad918172"
+  },
+  "reproduction_script": "import fs from 'node:fs';\nimport path from 'node:path';\nimport { createHash } from 'node:crypto';\nimport lighthouse from './node_modules/lighthouse/core/index.js';\nimport { launch } from './node_modules/chrome-launcher/dist/index.js';\nimport chromium, { inflate, setupLambdaEnvironment } from './node_modules/@sparticuz/chromium/build/index.js';\nimport { throttling, screenEmulationMetrics, userAgents } from './node_modules/lighthouse/core/config/constants.js';\n\nawait inflate(path.resolve('node_modules/@sparticuz/chromium/bin/al2023.tar.br'));\nsetupLambdaEnvironment('/tmp/al2023/lib');\nconst cases = [\n  { name: 'mobile-home', mode: 'mobile', route: '/' },\n  { name: 'mobile-catalog', mode: 'mobile', route: '/products' },\n  { name: 'mobile-product', mode: 'mobile', route: '/products/br-mods-pc' },\n  { name: 'mobile-payments', mode: 'mobile', route: '/payments' },\n  { name: 'desktop-home', mode: 'desktop', route: '/' },\n];\nconst dir = '/home/user/abn-final-lighthouse';\nfs.mkdirSync(dir, { recursive: true });\nconst selected = cases.filter(c => process.argv.slice(2).includes(c.name));\nif (!selected.length) throw new Error('Pass one or more case names.');\nfor (const item of selected) {\n  const target = `http://127.0.0.1:3000${item.route}`;\n  const warm = await fetch(target);\n  if (warm.status !== 200) throw new Error(`Warm request failed: ${item.route}: ${warm.status}`);\n  await warm.text();\n  const settings = {\n    onlyCategories: ['performance'],\n    formFactor: item.mode,\n    screenEmulation: item.mode === 'mobile' ? screenEmulationMetrics.mobile : { ...screenEmulationMetrics.desktop, width: 1440, height: 900 },\n    emulatedUserAgent: userAgents[item.mode],\n    throttlingMethod: 'simulate',\n    throttling: item.mode === 'mobile' ? throttling.mobileSlow4G : { ...throttling.desktopDense4G, rttMs: 40, throughputKbps: 10240, cpuSlowdownMultiplier: 1 },\n  };\n  for (let run = 1; run <= 3; run++) {\n    const output = `${dir}/${item.name}-${run}.json`;\n    const brief = `${dir}/${item.name}-${run}-metrics.json`;\n    if (fs.existsSync(brief)) { console.log(`Already recorded ${item.name} ${run}`); continue; }\n    const chrome = await launch({\n      chromePath: await chromium.executablePath(),\n      chromeFlags: chromium.args.filter(arg => !['--disable-web-security', '--allow-running-insecure-content', '--single-process'].includes(arg)),\n      logLevel: 'silent',\n    });\n    try {\n      const result = await lighthouse(target, { port: chrome.port, logLevel: 'error', output: 'json' }, { extends: 'lighthouse:default', settings });\n      if (!result || result.lhr.runtimeError) throw new Error(JSON.stringify(result?.lhr.runtimeError ?? 'No result'));\n      const lhr = result.lhr;\n      fs.writeFileSync(output, JSON.stringify(lhr));\n      const metrics = {\n        ...item, run, fetchedAt: lhr.fetchTime, lighthouseVersion: lhr.lighthouseVersion,\n        environment: lhr.environment, settings: lhr.configSettings,\n        performanceScore: Math.round(lhr.categories.performance.score * 100),\n        lcpMs: lhr.audits['largest-contentful-paint'].numericValue,\n        tbtMs: lhr.audits['total-blocking-time'].numericValue,\n        cls: lhr.audits['cumulative-layout-shift'].numericValue,\n        fcpMs: lhr.audits['first-contentful-paint'].numericValue,\n        speedIndexMs: lhr.audits['speed-index'].numericValue,\n        warnings: lhr.runWarnings,\n        reportSha256: createHash('sha256').update(fs.readFileSync(output)).digest('hex'),\n      };\n      fs.writeFileSync(brief, JSON.stringify(metrics, null, 2));\n      console.log(`${item.name} ${run}/3: score=${metrics.performanceScore}, LCP=${(metrics.lcpMs / 1000).toFixed(3)}s, TBT=${(metrics.tbtMs / 1000).toFixed(3)}s, CLS=${metrics.cls}`);\n    } finally { await chrome.kill(); }\n  }\n}\n"
+}

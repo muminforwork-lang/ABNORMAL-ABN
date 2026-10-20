@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { useHydrated } from '@/components/use-hydrated';
 
 type CopyState = 'idle' | 'copied' | 'error';
 
@@ -19,6 +20,7 @@ export function CopyButton({
   copiedLabel?: string;
   className?: string;
 }) {
+  const hydrated = useHydrated();
   const [state, setState] = useState<CopyState>('idle');
   const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -65,6 +67,8 @@ export function CopyButton({
     <button
       type="button"
       onClick={copy}
+      disabled={!hydrated}
+      title={!hydrated ? 'Select the displayed text to copy it manually.' : undefined}
       aria-label={`${label} ${value}`}
       className={`btn ${isCopied ? 'btn-aura' : 'btn-ghost'} !px-3.5 !py-2 !text-[0.75rem] ${className}`}
     >
@@ -102,7 +106,7 @@ export function CopyButton({
           </svg>
         )}
       </span>
-      <span>{isCopied ? copiedLabel : isError ? 'Press Ctrl+C' : label}</span>
+      <span>{!hydrated ? 'Select text to copy' : isCopied ? copiedLabel : isError ? 'Press Ctrl+C' : label}</span>
       <span aria-live="polite" className="sr-only">
         {isCopied ? `${value} copied to clipboard` : isError ? 'Copy failed' : ''}
       </span>

@@ -1,0 +1,1211 @@
+{
+  "batch": 3,
+  "audit_ids_completed": [
+    50,
+    51,
+    28
+  ],
+  "branch": "arena/99ad60e3-abnormal-abn",
+  "head": "a55cb0deaa0672fde57c396a53d69994637239f0",
+  "source_files": [
+    {
+      "path": "src/app/globals.css",
+      "status": "modified",
+      "before_sha256": "20ae9f40bb8a15b6a52c89352adf2ec016ba204e4b7e1301ca98b477eeb375c9",
+      "after_sha256": "a5c50c0764ae4f24a0225bf6f8e651bffa2f3e805bf972d15e702cae5c1f9162"
+    },
+    {
+      "path": "src/components/modal.tsx",
+      "status": "new",
+      "before_sha256": null,
+      "after_sha256": "60a78d2f9ddbd9c9edf6218ac684d48bc0e09701b54bf94615ce0a00356fad9b"
+    },
+    {
+      "path": "src/components/prestige/featured-drop.tsx",
+      "status": "modified",
+      "before_sha256": "fefb40d074a51fdbd82a21cd79f20296830ac6ee85a2f834989f6c4359750436",
+      "after_sha256": "a7992765f3e23d4258adf9f86c33ae30e40d21ed2494adf1fabf04244de2a992"
+    },
+    {
+      "path": "src/components/prestige/product-gallery.tsx",
+      "status": "modified",
+      "before_sha256": "d6f95f7a56646f39a961e7319e16c4787073ca8b6191b51e37c54979ac25ed11",
+      "after_sha256": "5a1749f154c05eb9393d5890e2cc5922365d70fc5bb75d20ee5a30dd9fa742e0"
+    },
+    {
+      "path": "src/components/prestige/scroll-lock.ts",
+      "status": "modified",
+      "before_sha256": "9ecf6f130f53156834c6549bd138fd874e0faaa292fba1c9ce2e7350a3ec14dc",
+      "after_sha256": "c2f094a6ebf1bfd36bf9317c42a1a476562605f1608013070395ee316cb0236b"
+    },
+    {
+      "path": "src/components/purchase-form.tsx",
+      "status": "modified",
+      "before_sha256": "a998fe043a1da10dd5d53b66b37cb65a0c0bebd0a565d851794f992d80231265",
+      "after_sha256": "c76a2e24be0e0bf19d057d3efe83506bbd2453e1c0485ed7a034c8397d2fd227"
+    },
+    {
+      "path": "src/components/site-header.tsx",
+      "status": "modified",
+      "before_sha256": "c78229b14c90a088f92cc88c53f44cbdeaaabcb14eaca679c957bc6e46a9e858",
+      "after_sha256": "b8bdf13121c149d2654d1e286fc7b8cbf69e5754d6947d5579bab43c576a45f9"
+    },
+    {
+      "path": "src/lib/dialog.ts",
+      "status": "new",
+      "before_sha256": null,
+      "after_sha256": "62a50ba0ce746d6d14406c36ee2957ae72bb73f9f44d767a934f0113c2b1f736"
+    },
+    {
+      "path": "src/lib/purchase-validation.ts",
+      "status": "new",
+      "before_sha256": null,
+      "after_sha256": "1985a4059937e4e2abc7b50d79d4a61c774db6a7e372b09941bce8409b35ab1c"
+    },
+    {
+      "path": "tests/purchase-validation.test.ts",
+      "status": "new",
+      "before_sha256": null,
+      "after_sha256": "82f32b899100b0c065119e2bd96cdf45c59a7eedd50eaa8891bb934c2ac87f53"
+    },
+    {
+      "path": "tests/scroll-lock.test.ts",
+      "status": "new",
+      "before_sha256": null,
+      "after_sha256": "166396572c6e88f74e9e0d5a2a69684e1977ff82f39e6bb4fb8cfec8cb7eac76"
+    }
+  ],
+  "protected_source_files_unchanged": [
+    "src/data/products.ts",
+    "src/data/store.ts",
+    "src/lib/themes.ts",
+    "src/components/artwork.tsx",
+    "src/components/product-visual.tsx",
+    "src/components/order-context.tsx",
+    "src/components/price-list.tsx",
+    "src/lib/purchase.ts",
+    "src/components/effects-provider.tsx",
+    "src/lib/effects.ts",
+    "package.json",
+    "package-lock.json"
+  ],
+  "protected_catalog_json_sha256": "0fb339034224131a7eb90d8618e005d58ca23fa73d32c3bd29a7902990a2d75b",
+  "check_cycles": [
+    {
+      "log": "checks-00-restored-baseline.txt",
+      "typecheck": "passed",
+      "tests_passed": 35,
+      "build_pages": 40,
+      "log_sha256": "10ddcfaa9eff855fabed2f288442790ead5cf87acf7a9502a029e51f97704720"
+    },
+    {
+      "log": "checks-01-modal-dialogs.txt",
+      "typecheck": "passed",
+      "tests_passed": 40,
+      "build_pages": 40,
+      "log_sha256": "af72dfee15b5ed05fe38e45d8f4f2f320e912b951137b3272266cb0613d92da9"
+    },
+    {
+      "log": "checks-02-form-validation.txt",
+      "typecheck": "passed",
+      "tests_passed": 51,
+      "build_pages": 40,
+      "log_sha256": "c88bad33f55148226ffd28728407cfdf37405a239c7675501783473611c230a8"
+    },
+    {
+      "log": "checks-03-responsive-header.txt",
+      "typecheck": "passed",
+      "tests_passed": 51,
+      "build_pages": 40,
+      "log_sha256": "c818697e7fec636d28219c4415d2f2e9433174c2fb22fd5d980dac4f54471831"
+    },
+    {
+      "log": "checks-04-label-and-menu-refinement.txt",
+      "typecheck": "passed",
+      "tests_passed": 51,
+      "build_pages": 40,
+      "log_sha256": "1ef89edecea3ffcb9e0b387c9fcee0fad00dcfad6191c132cebd9fc39e7a2873"
+    },
+    {
+      "log": "checks-05-final-modal-styles.txt",
+      "typecheck": "passed",
+      "tests_passed": 51,
+      "build_pages": 40,
+      "log_sha256": "c8ce3421293c4db0f8a5bb2d8693691f3c2b4927d727d6c1cc7339978483c250"
+    },
+    {
+      "log": "checks-06-large-text-labels.txt",
+      "typecheck": "passed",
+      "tests_passed": 51,
+      "build_pages": 40,
+      "log_sha256": "1b6606ff3a67642ab9b2e386e30bae811688bef9948e5c3a2c7249f436a32262"
+    }
+  ],
+  "final_unit_tests": 51,
+  "production_pages": 40,
+  "scoped_axe_checks": [
+    {
+      "group": "header",
+      "case": "phone",
+      "violations": 0
+    },
+    {
+      "group": "header",
+      "case": "intermediate",
+      "violations": 0
+    },
+    {
+      "group": "header",
+      "case": "phone-large-text",
+      "violations": 0
+    },
+    {
+      "group": "form",
+      "case": "desktop",
+      "violations": 0
+    },
+    {
+      "group": "form",
+      "case": "phone",
+      "violations": 0
+    },
+    {
+      "group": "form",
+      "case": "small-phone",
+      "violations": 0
+    },
+    {
+      "group": "dialogs",
+      "case": "phone",
+      "violations": 0
+    },
+    {
+      "group": "dialogs",
+      "case": "phone",
+      "violations": 0
+    }
+  ],
+  "browser_reports": {
+    "header": {
+      "group": "header",
+      "browser": "153.0.8010.0",
+      "runs": [
+        {
+          "name": "small-phone",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "textPercent": 100,
+          "menu": true,
+          "layout": {
+            "height": 60.390625,
+            "cssHeight": 60.390625,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 20,
+                "right": 175.515625,
+                "top": 14.1875,
+                "bottom": 46.1875
+              },
+              {
+                "label": "Open menu",
+                "x": 246,
+                "right": 290,
+                "top": 8.1875,
+                "bottom": 52.1875
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "phone",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "textPercent": 100,
+          "menu": true,
+          "layout": {
+            "height": 60.390625,
+            "cssHeight": 60.390625,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 20,
+                "right": 175.515625,
+                "top": 14.1875,
+                "bottom": 46.1875
+              },
+              {
+                "label": "Open menu",
+                "x": 316,
+                "right": 360,
+                "top": 8.1875,
+                "bottom": 52.1875
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true,
+              "axe": []
+            }
+          }
+        },
+        {
+          "name": "landscape",
+          "viewport": {
+            "width": 812,
+            "height": 375
+          },
+          "textPercent": 100,
+          "menu": true,
+          "layout": {
+            "height": 74,
+            "cssHeight": 74,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 32,
+                "right": 216.1875,
+                "top": 19,
+                "bottom": 55
+              },
+              {
+                "label": "Open menu",
+                "x": 726,
+                "right": 770,
+                "top": 15,
+                "bottom": 59
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "intermediate",
+          "viewport": {
+            "width": 1024,
+            "height": 600
+          },
+          "textPercent": 100,
+          "menu": true,
+          "layout": {
+            "height": 74,
+            "cssHeight": 74,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 32,
+                "right": 216.1875,
+                "top": 19,
+                "bottom": 55
+              },
+              {
+                "label": "Open menu",
+                "x": 938,
+                "right": 982,
+                "top": 15,
+                "bottom": 59
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true,
+              "axe": []
+            }
+          }
+        },
+        {
+          "name": "laptop",
+          "viewport": {
+            "width": 1280,
+            "height": 720
+          },
+          "textPercent": 100,
+          "menu": true,
+          "layout": {
+            "height": 74,
+            "cssHeight": 74,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 40,
+                "right": 224.1875,
+                "top": 19,
+                "bottom": 55
+              },
+              {
+                "label": "Open menu",
+                "x": 1186,
+                "right": 1230,
+                "top": 15,
+                "bottom": 59
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "desktop",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "textPercent": 100,
+          "menu": false,
+          "layout": {
+            "height": 74,
+            "cssHeight": 74,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 83,
+                "right": 267.1875,
+                "top": 19,
+                "bottom": 55
+              },
+              {
+                "label": "Home",
+                "x": 357.109375,
+                "right": 432.390625,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "PC",
+                "x": 436.390625,
+                "right": 492.5,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Android",
+                "x": 496.5,
+                "right": 584.75,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "iOS",
+                "x": 588.75,
+                "right": 648.859375,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Payments",
+                "x": 652.859375,
+                "right": 754.34375,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Support",
+                "x": 758.34375,
+                "right": 848.671875,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Browse all products",
+                "x": 1166.28125,
+                "right": 1347,
+                "top": 16.40625,
+                "bottom": 57.59375
+              }
+            ]
+          }
+        },
+        {
+          "name": "wide-desktop",
+          "viewport": {
+            "width": 1920,
+            "height": 1080
+          },
+          "textPercent": 100,
+          "menu": false,
+          "layout": {
+            "height": 74,
+            "cssHeight": 74,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 323,
+                "right": 507.1875,
+                "top": 19,
+                "bottom": 55
+              },
+              {
+                "label": "Home",
+                "x": 597.109375,
+                "right": 672.390625,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "PC",
+                "x": 676.390625,
+                "right": 732.5,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Android",
+                "x": 736.5,
+                "right": 824.75,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "iOS",
+                "x": 828.75,
+                "right": 888.859375,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Payments",
+                "x": 892.859375,
+                "right": 994.34375,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Support",
+                "x": 998.34375,
+                "right": 1088.671875,
+                "top": 19.15625,
+                "bottom": 54.84375
+              },
+              {
+                "label": "Browse all products",
+                "x": 1406.28125,
+                "right": 1587,
+                "top": 16.40625,
+                "bottom": 57.59375
+              }
+            ]
+          }
+        },
+        {
+          "name": "phone-large-text",
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "textPercent": 200,
+          "menu": true,
+          "layout": {
+            "height": 118.796875,
+            "cssHeight": 118.796875,
+            "overflowing": true,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 40,
+                "right": 104,
+                "top": 27.390625,
+                "bottom": 91.390625
+              },
+              {
+                "label": "Open menu",
+                "x": 252,
+                "right": 340,
+                "top": 15.390625,
+                "bottom": 103.390625
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true,
+              "axe": []
+            }
+          }
+        },
+        {
+          "name": "small-large-text",
+          "viewport": {
+            "width": 320,
+            "height": 568
+          },
+          "textPercent": 200,
+          "menu": true,
+          "layout": {
+            "height": 118.796875,
+            "cssHeight": 118.796875,
+            "overflowing": true,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 40,
+                "right": 104,
+                "top": 27.390625,
+                "bottom": 91.390625
+              },
+              {
+                "label": "Open menu",
+                "x": 182,
+                "right": 270,
+                "top": 15.390625,
+                "bottom": 103.390625
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "desktop-large-text",
+          "viewport": {
+            "width": 1440,
+            "height": 900
+          },
+          "textPercent": 200,
+          "menu": true,
+          "layout": {
+            "height": 146,
+            "cssHeight": 146,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 80,
+                "right": 448.46875,
+                "top": 37,
+                "bottom": 109
+              },
+              {
+                "label": "Open menu",
+                "x": 1262,
+                "right": 1350,
+                "top": 29,
+                "bottom": 117
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "landscape-large-text",
+          "viewport": {
+            "width": 812,
+            "height": 375
+          },
+          "textPercent": 200,
+          "menu": true,
+          "layout": {
+            "height": 146,
+            "cssHeight": 146,
+            "overflowing": false,
+            "controls": [
+              {
+                "label": "ABNORMAL\u7570\u5e38",
+                "x": 64,
+                "right": 432.46875,
+                "top": 37,
+                "bottom": 109
+              },
+              {
+                "label": "Open menu",
+                "x": 650,
+                "right": 738,
+                "top": 29,
+                "bottom": 117
+              }
+            ],
+            "menuChecks": {
+              "native": true,
+              "focusContained": true,
+              "backgroundInert": true,
+              "backgroundScrollLocked": true
+            }
+          }
+        },
+        {
+          "name": "menu-resize",
+          "closesOnDesktopLayout": true,
+          "visibleFocusFallback": true,
+          "opensAgain": true
+        }
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "nonReadRequests": [],
+      "passed": true
+    },
+    "form": {
+      "group": "form",
+      "browser": "153.0.8010.0",
+      "runs": [
+        {
+          "name": "desktop",
+          "invalidEnterFocus": {
+            "active": true,
+            "labelTop": 89.84375,
+            "x": 108,
+            "top": 114.15625,
+            "bottom": 162.75,
+            "right": 1322,
+            "header": 74,
+            "width": 1440,
+            "height": 900
+          },
+          "durationHandoff": {
+            "active": true,
+            "labelTop": null,
+            "x": 108,
+            "top": 418.9375,
+            "bottom": 480.9375,
+            "right": 1322,
+            "header": 74,
+            "width": 1440,
+            "height": 900
+          },
+          "invalidAxe": [],
+          "punctuationRejected": true,
+          "whitespaceRejected": true,
+          "nativeEnterSubmits": true,
+          "exactAmounts": true,
+          "clipboardSummary": true,
+          "refreshClears": true,
+          "memoryOnly": true
+        },
+        {
+          "name": "phone",
+          "invalidEnterFocus": {
+            "active": true,
+            "labelTop": 76.203125,
+            "x": 41,
+            "top": 100.515625,
+            "bottom": 149.109375,
+            "right": 349,
+            "header": 60.390625,
+            "width": 390,
+            "height": 844
+          },
+          "durationHandoff": {
+            "active": true,
+            "labelTop": null,
+            "x": 41,
+            "top": 390.796875,
+            "bottom": 452.796875,
+            "right": 349,
+            "header": 60.390625,
+            "width": 390,
+            "height": 844
+          },
+          "invalidAxe": [],
+          "punctuationRejected": true,
+          "whitespaceRejected": true,
+          "nativeEnterSubmits": true,
+          "exactAmounts": true,
+          "clipboardSummary": true,
+          "refreshClears": true,
+          "memoryOnly": true
+        },
+        {
+          "name": "small-phone",
+          "invalidEnterFocus": {
+            "active": true,
+            "labelTop": 76.65625,
+            "x": 41,
+            "top": 100.96875,
+            "bottom": 149.5625,
+            "right": 279,
+            "header": 60.390625,
+            "width": 320,
+            "height": 568
+          },
+          "durationHandoff": {
+            "active": true,
+            "labelTop": null,
+            "x": 41,
+            "top": 238.75,
+            "bottom": 328.75,
+            "right": 279,
+            "header": 60.390625,
+            "width": 320,
+            "height": 568
+          },
+          "invalidAxe": [],
+          "punctuationRejected": true,
+          "whitespaceRejected": true,
+          "nativeEnterSubmits": true,
+          "exactAmounts": true,
+          "clipboardSummary": true,
+          "refreshClears": true,
+          "memoryOnly": true
+        }
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "nonReadRequests": [],
+      "routes": [
+        {
+          "slug": "br-mods-pc",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "fake-lag-pc",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "br-fake-lag-pc-bundle",
+          "status": 200,
+          "paymentMethods": [
+            "binance"
+          ]
+        },
+        {
+          "slug": "abnormal-aimbot-premium-pc",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "streamer-pc-fully-hidden-phone-control",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "br-mods-android",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "drip-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "drip-proxy",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "prime-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "drip-r00t-android",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "aim-hack-non-root-android",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "drip-wire-non-root-android",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "pato-blue-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "pato-orange-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "pato-green-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "pato-yellow",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad"
+          ]
+        },
+        {
+          "slug": "silentceats-apk-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "bala-mod-android",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad"
+          ]
+        },
+        {
+          "slug": "rocket-mod",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad"
+          ]
+        },
+        {
+          "slug": "fluorite-ios",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "migul-ios",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "gbox-esign",
+          "status": 200,
+          "paymentMethods": [
+            "binance"
+          ]
+        },
+        {
+          "slug": "ios-external",
+          "status": 200,
+          "paymentMethods": [
+            "binance"
+          ]
+        },
+        {
+          "slug": "aim-hack-non-root-ios",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        },
+        {
+          "slug": "drip-wire-non-root-ios",
+          "status": 200,
+          "paymentMethods": [
+            "bkash",
+            "nagad",
+            "binance"
+          ]
+        }
+      ],
+      "passed": true
+    },
+    "dialogs": {
+      "group": "dialogs",
+      "browser": "153.0.8010.0",
+      "runs": [
+        {
+          "name": "keyboard-desktop",
+          "gallery": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "shelf": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "escapeAndButtonsAndBackdrop": true,
+          "restoreFocus": true,
+          "navigationCleansUp": true
+        },
+        {
+          "name": "phone",
+          "gallery": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true,
+            "axe": []
+          },
+          "shelf": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true,
+            "axe": []
+          },
+          "escapeAndButtonsAndBackdrop": true,
+          "restoreFocus": true,
+          "navigationCleansUp": true
+        },
+        {
+          "name": "landscape",
+          "gallery": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "shelf": {
+            "native": true,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "escapeAndButtonsAndBackdrop": true,
+          "restoreFocus": true,
+          "navigationCleansUp": true
+        },
+        {
+          "name": "dialog-api-fallback",
+          "gallery": {
+            "native": false,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "shelf": {
+            "native": false,
+            "focusContained": true,
+            "backgroundInert": true,
+            "backgroundScrollLocked": true
+          },
+          "escapeAndButtonsAndBackdrop": true,
+          "restoreFocus": true,
+          "navigationCleansUp": true
+        }
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "nonReadRequests": [],
+      "passed": true
+    },
+    "regression": {
+      "group": "regression",
+      "browser": "153.0.8010.0",
+      "runs": [
+        {
+          "name": "nojs-phone",
+          "visibleCatalog": true,
+          "nativeMenu": true,
+          "localFormDisabled": true
+        },
+        {
+          "name": "nojs-intermediate",
+          "visibleCatalog": true,
+          "nativeMenu": true,
+          "localFormDisabled": true
+        },
+        {
+          "name": "nojs-desktop",
+          "visibleCatalog": true,
+          "nativeMenu": true,
+          "localFormDisabled": true
+        },
+        {
+          "name": "live-motion",
+          "nativeCursor": true,
+          "focusPreserved": true,
+          "replacementLenisStaysLocked": true,
+          "closeResumesScrolling": true
+        },
+        {
+          "name": "home-landscape",
+          "touchScrolling": true,
+          "buttonsReachable": true
+        },
+        {
+          "name": "home-small",
+          "touchScrolling": true,
+          "buttonsReachable": true
+        }
+      ],
+      "errors": [],
+      "consoleErrors": [],
+      "externalRequests": [],
+      "nonReadRequests": [],
+      "passed": true
+    }
+  },
+  "limitations": [
+    "Chromium emulation, not physical-device/Safari/Firefox certification.",
+    "200% tests enlarge the root font; full-page catalog reflow remains outside this batch and still overflows on the narrow 200% cases. Header/menu scopes pass.",
+    "Axe checks are scoped to the changed dialog/form interfaces, not a whole-site accessibility certification.",
+    "Mocked missing showModal API tests the fallback, not a real legacy browser.",
+    "No Lighthouse rerun or field performance measurement in this batch.",
+    "No commits, pushes, deployment, real payment or support messages."
+  ],
+  "progress": {
+    "actionable_recommendations": 77,
+    "completed_ids": [
+      34,
+      35,
+      33,
+      36,
+      49,
+      9,
+      10,
+      27,
+      50,
+      51,
+      28
+    ],
+    "withdrawn_ids": [
+      72
+    ],
+    "remaining_count": 66
+  },
+  "historical_lighthouse_baseline": {
+    "provenance": "Values from the earlier delivered Phase 1 audit/session record, not remeasured in this batch. Original report files are absent from the restored filesystem.",
+    "tool": "Lighthouse 13.5.0 / Chromium 153; median of three runs per case",
+    "cases": [
+      {
+        "mode": "mobile",
+        "route": "/",
+        "score": 44,
+        "lcp_seconds": 5.053,
+        "tbt_seconds": 7.46,
+        "cls": 0
+      },
+      {
+        "mode": "mobile",
+        "route": "/products",
+        "score": 44,
+        "lcp_seconds": 5.341,
+        "tbt_seconds": 7.03,
+        "cls": 0
+      },
+      {
+        "mode": "mobile",
+        "route": "/products/br-mods-pc",
+        "score": 46,
+        "lcp_seconds": 4.818,
+        "tbt_seconds": 7.054,
+        "cls": 0
+      },
+      {
+        "mode": "mobile",
+        "route": "/payments",
+        "score": 45,
+        "lcp_seconds": 4.998,
+        "tbt_seconds": 6.514,
+        "cls": 0
+      },
+      {
+        "mode": "desktop",
+        "route": "/",
+        "score": 59,
+        "lcp_seconds": 1.135,
+        "tbt_seconds": 3.798,
+        "cls": 0
+      }
+    ]
+  }
+}

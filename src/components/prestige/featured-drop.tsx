@@ -1,8 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef, useState, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
-import { lockScroll, unlockScroll } from '@/components/prestige/scroll-lock';
+import { useCallback, useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react';
+import { Modal } from '@/components/modal';
+import { canFocus } from '@/lib/dialog';
+import { useEffects } from '@/components/effects-provider';
 
 export type DropItem = {
   slug: string;
@@ -17,25 +19,31 @@ export type DropItem = {
 /**
  * "Featured drop" — a shelf that rises from the bottom edge.
  *
- * The home page is deliberately a single fixed screen, so the featured products
- * are not a section you scroll past: they are a drawer you pull up. The shelf
+ * Featured products live in a drawer, keeping the home hero compact while the
+ * page itself can still scroll when its content needs more room. The shelf
  * scrolls horizontally (wheel, drag, keyboard arrows) and closes on Esc, the
  * close button or a backdrop click. Any element with `data-drop-trigger` opens
  * it, which lets the desktop rail and the phone peek-strip share one panel.
  */
 export function FeaturedDrop({ items }: { items: DropItem[] }) {
+  const { enabled } = useEffects();
   const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const panelRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const closeRef = useRef<HTMLButtonElement | null>(null);
-  const opener = useRef<Element | null>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  const close = useCallback(() => setOpen(false), []);
+  const returnFocus = useCallback(() => {
+    if (canFocus(opener.current)) return opener.current;
+    return Array.from(document.querySelectorAll<HTMLElement>('[data-drop-trigger]')).find(canFocus) ?? null;
+  }, []);
   const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false, id: 0, captured: false });
 
   // Opening is delegated, so any trigger anywhere can pull the shelf up.
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
-      const trigger = (event.target as Element | null)?.closest?.('[data-drop-trigger]');
+      const trigger = (event.target as Element | null)?.closest<HTMLElement>('[data-drop-trigger]');
       if (!trigger) return;
       event.preventDefault();
       opener.current = trigger;
@@ -48,18 +56,14 @@ export function FeaturedDrop({ items }: { items: DropItem[] }) {
   useEffect(() => {
     if (!open) return;
 
-    lockScroll();
-    closeRef.current?.focus();
     const track = trackRef.current;
-
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false);
-      if (event.key === 'ArrowRight' && track) track.scrollBy({ left: 320, behavior: 'smooth' });
-      if (event.key === 'ArrowLeft' && track) track.scrollBy({ left: -320, behavior: 'smooth' });
-    };
+    if (!enabled && track) track.scrollTo({ left: track.scrollLeft, behavior: 'instant' });
 
     const onWheel = (event: WheelEvent) => {
       if (!track || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+      // On a short screen let the panel scroll vertically to its real prices.
+      const panel = panelRef.current;
+      if (panel && panel.scrollHeight > panel.clientHeight) return;
       const max = track.scrollWidth - track.clientWidth;
       if (max <= 0) return;
       const atStart = track.scrollLeft <= 0 && event.deltaY < 0;
@@ -69,22 +73,19 @@ export function FeaturedDrop({ items }: { items: DropItem[] }) {
       track.scrollLeft += event.deltaY;
     };
 
-    window.addEventListener('keydown', onKey);
     track?.addEventListener('wheel', onWheel, { passive: false });
     return () => {
-      window.removeEventListener('keydown', onKey);
       track?.removeEventListener('wheel', onWheel);
-      unlockScroll();
     };
-  }, [open]);
+  }, [open, enabled]);
 
-  useEffect(() => {
-    if (!open) return;
-    return () => {
-      const element = opener.current as HTMLElement | null;
-      element?.focus?.();
-    };
-  }, [open]);
+  const onShelfKey = (event: ReactKeyboardEvent<HTMLDialogElement>) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+      event.preventDefault();
+      trackRef.current?.scrollBy({ left: event.key === 'ArrowRight' ? 320 : -320, behavior: enabled ? 'smooth' : 'instant' });
+    }
+  };
 
   const onScroll = () => {
     const track = trackRef.current;
@@ -145,10 +146,16 @@ export function FeaturedDrop({ items }: { items: DropItem[] }) {
   const count = items.length;
 
   return (
-    <>
-      {open ? (
-        <div className="drop" role="dialog" aria-modal="true" aria-label="Featured drop">
-          <button type="button" className="drop__backdrop" aria-label="Close featured drop" onClick={() => setOpen(false)} />
+    <Modal
+      open={open}
+      onClose={close}
+      initialFocusRef={closeRef}
+      returnFocus={returnFocus}
+      className="drop"
+      label="Featured drop"
+      onKeyDown={onShelfKey}
+    >
+      <div className="drop__backdrop" data-dialog-backdrop aria-hidden="true" />
           <div className="drop__panel" ref={panelRef}>
             <div className="drop__head">
               <div>
@@ -159,7 +166,7 @@ export function FeaturedDrop({ items }: { items: DropItem[] }) {
                   and price.
                 </p>
               </div>
-              <button ref={closeRef} type="button" className="drop__close" onClick={() => setOpen(false)} aria-label="Close featured drop">
+              <button ref={closeRef} type="button" className="drop__close" onClick={close} aria-label="Close featured drop">
                 <svg viewBox="0 0 20 20" aria-hidden="true">
                   <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                 </svg>
@@ -223,8 +230,6 @@ export function FeaturedDrop({ items }: { items: DropItem[] }) {
               <span aria-hidden="true">← →</span> or drag to explore · Esc to close
             </p>
           </div>
-        </div>
-      ) : null}
-    </>
+    </Modal>
   );
 }

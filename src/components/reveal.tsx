@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState, type ElementType, type ReactNode } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 type RevealProps = {
   children: ReactNode;
@@ -11,18 +12,29 @@ type RevealProps = {
 };
 
 /**
- * Fades content up the first time it scrolls into view.
- * Falls back to "always visible" when IntersectionObserver is unavailable,
- * so nothing can ever be hidden from a visitor (or a crawler).
+ * Server output is always visible. Only off-screen content with an attached
+ * observer opts into a reveal. Disabling effects makes everything visible.
  */
 export function Reveal({ children, delay = 0, className = '', as }: RevealProps) {
   const Tag = (as ?? 'div') as ElementType;
+  const { enabled } = useEffects();
   const ref = useRef<HTMLElement | null>(null);
-  const [visible, setVisible] = useState(false);
+  const revealed = useRef(false);
+  const [visible, setVisible] = useState(true);
+  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
-    if (!node || typeof IntersectionObserver === 'undefined') {
+    if (!enabled || !node || typeof IntersectionObserver === 'undefined') {
+      setArmed(false);
+      setVisible(true);
+      return;
+    }
+
+    // Never hide content that the visitor is already reading.
+    const rect = node.getBoundingClientRect();
+    if (revealed.current || (rect.top < window.innerHeight && rect.bottom > 0)) {
+      revealed.current = true;
       setVisible(true);
       return;
     }
@@ -31,6 +43,7 @@ export function Reveal({ children, delay = 0, className = '', as }: RevealProps)
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
+            revealed.current = true;
             setVisible(true);
             observer.disconnect();
           }
@@ -40,12 +53,15 @@ export function Reveal({ children, delay = 0, className = '', as }: RevealProps)
     );
 
     observer.observe(node);
+    setVisible(false);
+    setArmed(true);
     return () => observer.disconnect();
-  }, []);
+  }, [enabled]);
 
   return (
     <Tag
       ref={ref}
+      data-reveal-ready={enabled && armed ? 'true' : 'false'}
       data-visible={visible ? 'true' : 'false'}
       style={{ transitionDelay: `${delay}ms` }}
       className={`reveal ${className}`}

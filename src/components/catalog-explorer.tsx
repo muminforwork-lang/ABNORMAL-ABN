@@ -13,6 +13,7 @@ import Link from 'next/link';
 import { ProductCard } from '@/components/product-card';
 import { ArrowIcon } from '@/components/ui';
 import { Reveal } from '@/components/reveal';
+import { useHydrated } from '@/components/use-hydrated';
 
 type PlatformOption = Platform | 'all';
 
@@ -36,6 +37,7 @@ export function CatalogExplorer({
   className?: string;
   limit?: number;
 }) {
+  const hydrated = useHydrated();
   const [query, setQuery] = useState('');
   const [platform, setPlatform] = useState<PlatformOption>(initialPlatform);
   const [duration, setDuration] = useState<DurationFilterId>('all');
@@ -74,6 +76,13 @@ export function CatalogExplorer({
       {/* ---------------------------------------------------------------- */}
       {/* Controls                                                          */}
       {/* ---------------------------------------------------------------- */}
+      <noscript>
+        <p className="panel-quiet mb-4 p-4 text-sm leading-relaxed text-bone-300">
+          Search and filters need JavaScript. The available products are listed below;
+          open any product to see every duration and price. The navigation links also
+          let you browse PC, Android and iOS separately.
+        </p>
+      </noscript>
       <div className="panel p-4 sm:p-5">
         <div className="grid gap-4 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)_minmax(0,1fr)]">
           <div role="search">
@@ -92,6 +101,7 @@ export function CatalogExplorer({
               </span>
               <input
                 id="catalog-search"
+                disabled={!hydrated}
                 type="search"
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
@@ -111,6 +121,7 @@ export function CatalogExplorer({
             </label>
             <select
               id="catalog-duration"
+                disabled={!hydrated}
               value={duration}
               onChange={(event) => setDuration(event.target.value as DurationFilterId)}
               className="field mt-2"
@@ -132,6 +143,7 @@ export function CatalogExplorer({
             </label>
             <select
               id="catalog-sort"
+                disabled={!hydrated}
               value={sort}
               onChange={(event) => setSort(event.target.value as SortId)}
               className="field mt-2"
@@ -155,6 +167,7 @@ export function CatalogExplorer({
                 key={option.id}
                 type="button"
                 onClick={() => setPlatform(option.id)}
+                disabled={!hydrated}
                 aria-pressed={platform === option.id}
                 className="filter-pill"
               >
@@ -189,7 +202,7 @@ export function CatalogExplorer({
         </p>
 
         {filtersActive ? (
-          <button type="button" onClick={clearFilters} className="btn btn-ghost !px-4 !py-2 !text-xs">
+          <button type="button" disabled={!hydrated} onClick={clearFilters} className="btn btn-ghost !px-4 !py-2 !text-xs">
             Clear filters
           </button>
         ) : null}
@@ -236,7 +249,7 @@ export function CatalogExplorer({
               catalog again.
             </p>
           </div>
-          <button type="button" onClick={clearFilters} className="btn btn-primary">
+          <button type="button" disabled={!hydrated} onClick={clearFilters} className="btn btn-primary">
             Show every product
           </button>
         </div>
