@@ -87,8 +87,8 @@ export function SupportPanel({
       label: 'Telegram',
       title: 'Telegram support',
       body: productName
-        ? `Prefer Telegram? Send the same details — "${productName}", duration and payment proof — and we reply there.`
-        : 'Prefer Telegram? Send the product, duration and payment details there instead.',
+        ? `Prefer Telegram? Confirm "${productName}", the duration and payment amount before paying. If you have already paid, send your summary and proof here.`
+        : 'Prefer Telegram? Confirm the product, duration and amount before paying. After payment, send your summary and proof here.',
       href: telegram.href,
       configured: telegram.configured,
       icon: TelegramIcon,
@@ -101,8 +101,8 @@ export function SupportPanel({
       label: 'WhatsApp',
       title: 'WhatsApp support',
       body: productName
-        ? `Message us on WhatsApp with "${productName}", your chosen duration and payment proof — we will confirm the order with you.`
-        : 'Message us on WhatsApp with the product, duration and payment details. We will confirm everything before delivery.',
+        ? `Message us on WhatsApp to confirm "${productName}", the duration and amount before paying. If you have already paid, send your summary and proof here.`
+        : 'Message us on WhatsApp to confirm the product, duration and amount before paying. After payment, send your summary and proof here.',
       href: whatsapp.href,
       configured: whatsapp.configured,
       icon: WhatsAppIcon,
@@ -174,8 +174,8 @@ export function ContactChecklist({ productName }: { productName?: string }) {
     productName ? `Product: ${productName}` : 'Product name',
     'The exact duration you want',
     'The price shown on the product page',
-    'Payment method used (bKash / Nagad / Binance)',
-    'Transaction ID from your payment',
+    'Payment method you plan to use, or already used (bKash / Nagad / Binance)',
+    'If you have already paid: your transaction ID and payment proof',
   ];
 
   return (

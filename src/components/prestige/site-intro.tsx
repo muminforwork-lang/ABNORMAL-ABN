@@ -1,38 +1,46 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
+import { useEffects } from '@/components/effects-provider';
 import { STORE_NAME, STORE_NAME_KANJI, STORE_TAGLINE } from '@/data/store';
 
 /**
- * First-visit curtain. The markup is always server-rendered, but it is only
- * displayed when the boot script in <head> has set `data-intro="1"` on <html>
- * (once per browser session). The animation is pure CSS and ends by itself, so:
- *
- *  - returning visitors never see a flash,
- *  - a visitor without JavaScript still gets fully readable content after the
- *    curtain, because it never intercepts pointer events and auto-hides,
- *  - "reduce motion" visitors skip it entirely.
+ * First-visit curtain, pre-paint opt-in for eligible desktop visitors only.
+ * It never blocks clicks. Disabling effects dismisses it, cancels its timer,
+ * and prevents it replaying when preferences change back.
  */
 export function SiteIntro() {
+  const { enabled, ready } = useEffects();
+  const played = useRef(false);
+
   useEffect(() => {
+    if (!ready) return;
     const root = document.documentElement;
-    // `?intro=1` replays the curtain (handy for previewing it any time).
-    if (new URLSearchParams(window.location.search).get('intro') === '1') {
-      root.dataset.intro = '1';
+    if (!enabled) {
+      delete root.dataset.intro;
+      return;
     }
+    if (played.current) return;
+    played.current = true;
+
+    // The preview flag never overrides the shared accessibility policy.
+    if (new URLSearchParams(window.location.search).get('intro') === '1') root.dataset.intro = '1';
     if (root.dataset.intro !== '1') return;
 
-    const timer = window.setTimeout(() => {
+    const dismiss = () => {
       delete root.dataset.intro;
       try {
         sessionStorage.setItem('abn-intro-seen', '1');
       } catch {
-        /* private mode – the curtain simply shows again next time */
+        // Storage is optional; this mount still cannot replay the curtain.
       }
-    }, 2050);
-
-    return () => window.clearTimeout(timer);
-  }, []);
+    };
+    const timer = window.setTimeout(dismiss, 2050);
+    return () => {
+      window.clearTimeout(timer);
+      dismiss();
+    };
+  }, [enabled, ready]);
 
   return (
     <div className="site-intro" aria-hidden="true">

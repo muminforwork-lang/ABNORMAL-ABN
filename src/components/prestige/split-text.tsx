@@ -1,6 +1,7 @@
 'use client';
 
 import { Fragment, useEffect, useRef, useState, type CSSProperties, type ElementType } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 type SplitTextProps = {
   /** Words are revealed one by one. Use \n to force a new line. */
@@ -32,18 +33,34 @@ export function SplitText({
   stagger = 55,
 }: SplitTextProps) {
   const Tag = (as ?? 'span') as ElementType;
+  const { enabled } = useEffects();
   const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
+  const played = useRef(false);
+  const [shown, setShown] = useState(true);
+  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!enabled || !node || played.current) {
+      setArmed(false);
+      setShown(true);
+      return;
+    }
+
+    const show = () => {
+      played.current = true;
+      setShown(true);
+    };
     if (playOnMount) {
-      const timer = window.setTimeout(() => setShown(true), 40);
+      setArmed(true);
+      setShown(false);
+      const timer = window.setTimeout(show, 40);
       return () => window.clearTimeout(timer);
     }
 
-    const node = ref.current;
-    if (!node || typeof IntersectionObserver === 'undefined') {
-      setShown(true);
+    const rect = node.getBoundingClientRect();
+    if (typeof IntersectionObserver === 'undefined' || (rect.top < window.innerHeight && rect.bottom > 0)) {
+      show();
       return;
     }
 
@@ -51,7 +68,7 @@ export function SplitText({
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setShown(true);
+            show();
             observer.disconnect();
           }
         }
@@ -60,8 +77,10 @@ export function SplitText({
     );
 
     observer.observe(node);
+    setArmed(true);
+    setShown(false);
     return () => observer.disconnect();
-  }, [playOnMount]);
+  }, [enabled, playOnMount]);
 
   const lines = text.split('\n');
   let wordIndex = 0;
@@ -69,6 +88,7 @@ export function SplitText({
   return (
     <Tag
       ref={ref}
+      data-split-ready={enabled && armed ? 'true' : 'false'}
       className={`split-text ${shown ? 'is-shown' : ''} ${className}`}
       aria-label={text.replace(/\n/g, ' ')}
     >

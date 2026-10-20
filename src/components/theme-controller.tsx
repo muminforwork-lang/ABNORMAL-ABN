@@ -3,23 +3,26 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { DEFAULT_THEME, isTheme, themeForPath, type ThemeId } from '@/lib/themes';
+import { useEffects } from '@/components/effects-provider';
 
 /**
  * Watches which [data-theme-section] is under the middle of the screen and
- * switches <html data-theme>. Colours transition in CSS, a ripple ring plays
- * and a subtle ripple plays on every change.
+ * switches <html data-theme>. The theme always works; its colour transition
+ * and ripple are decoration, enabled only by the shared effects policy.
  */
 export function ThemeController() {
   const pathname = usePathname();
+  const { enabled } = useEffects();
   const [burst, setBurst] = useState(0);
   const current = useRef<ThemeId>(DEFAULT_THEME);
 
   useEffect(() => {
+    if (!enabled) setBurst(0);
     const apply = (next: ThemeId) => {
       if (next === current.current) return;
       current.current = next;
       document.documentElement.dataset.theme = next;
-      setBurst((n) => n + 1);
+      if (enabled) setBurst((n) => n + 1);
     };
 
     const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-theme-section]'));
@@ -52,7 +55,7 @@ export function ThemeController() {
       window.removeEventListener('resize', onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
-  }, [pathname]);
+  }, [pathname, enabled]);
 
-  return burst > 0 ? <div key={`ripple-${burst}`} aria-hidden="true" className="theme-ripple" /> : null;
+  return enabled && burst > 0 ? <div key={`ripple-${burst}`} aria-hidden="true" className="theme-ripple" /> : null;
 }

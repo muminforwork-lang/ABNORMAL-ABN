@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { DEFAULT_THEME, THEME_IDS, isTheme, type ThemeId } from '@/lib/themes';
 import type { LocalArtCollection } from '@/lib/local-art';
+import { useEffects } from '@/components/effects-provider';
+import { watchMediaQuery } from '@/lib/effects';
 
 /**
  * The character that stands behind the page. One stage for the whole site:
@@ -21,6 +23,7 @@ import type { LocalArtCollection } from '@/lib/local-art';
  *    come back to that element.
  */
 export function CharacterStage({ local }: { local: LocalArtCollection }) {
+  const { enabled } = useEffects();
   const [active, setActive] = useState<ThemeId>(DEFAULT_THEME);
   const [mounted, setMounted] = useState<ThemeId[]>([DEFAULT_THEME]);
   const [desktop, setDesktop] = useState(false);
@@ -57,30 +60,25 @@ export function CharacterStage({ local }: { local: LocalArtCollection }) {
   }, []);
 
   useEffect(() => {
+    if (typeof window.matchMedia !== 'function') return;
     const query = window.matchMedia('(min-width: 1024px)');
     const sync = () => setDesktop(query.matches);
     sync();
-    query.addEventListener('change', sync);
-    return () => query.removeEventListener('change', sync);
+    return watchMediaQuery(query, sync);
   }, []);
 
-  // Keep the active slot mounted. On desktop, warm up all the others once the
-  // page is idle so the first swap to each is instant; on phones keep only the
-  // current one (and briefly the last one, so it can fade out).
+  // Only eligible desktops need inactive slots for cross-fades. Static modes
+  // keep the real active character, without fade timers or background prewarming.
   useEffect(() => {
-    setMounted((list) => (list.includes(active) ? list : [...list, active]));
-
-    let timer: number | undefined;
-    if (!desktop) {
-      timer = window.setTimeout(() => setMounted([active]), 1100);
+    if (!enabled || !desktop) {
+      setMounted([active]);
+      return;
     }
-    return () => {
-      if (timer !== undefined) window.clearTimeout(timer);
-    };
-  }, [active, desktop]);
+    setMounted((list) => (list.includes(active) ? list : [...list, active]));
+  }, [active, desktop, enabled]);
 
   useEffect(() => {
-    if (!desktop) return;
+    if (!enabled || !desktop) return;
     let cancelled = false;
     const warm = () => {
       if (!cancelled) setMounted([...THEME_IDS]);
@@ -93,7 +91,7 @@ export function CharacterStage({ local }: { local: LocalArtCollection }) {
       if (idle) (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback?.(handle);
       else window.clearTimeout(handle);
     };
-  }, [desktop]);
+  }, [desktop, enabled]);
 
   // Each time you leave an element, quietly line up its next picture.
   useEffect(() => {
@@ -102,30 +100,28 @@ export function CharacterStage({ local }: { local: LocalArtCollection }) {
     if (left === active) return;
     const options = local[left] ?? [];
     if (options.length < 2) return;
-    const timer = window.setTimeout(() => {
+    const chooseNext = () => {
       setVariant((current) => {
-        // A different picture from the one just shown.
         const now = current[left] ?? 0;
         const next = (now + 1 + Math.floor(Math.random() * (options.length - 1))) % options.length;
-        const art = options[next];
-        const warmUp = new Image();
-        warmUp.decoding = 'async';
-        warmUp.src = (!desktop && art.mobileUrl) || art.url;
         return { ...current, [left]: next };
       });
-    }, 1100);
+    };
+    if (!enabled) {
+      chooseNext();
+      return;
+    }
+    const timer = window.setTimeout(chooseNext, 1100);
     return () => window.clearTimeout(timer);
-  }, [active, local, desktop]);
+  }, [active, local, enabled]);
 
   // Desktop only: soft parallax + dimming, driven by ONE requestAnimationFrame
   // loop that sleeps as soon as everything has settled.
   useEffect(() => {
-    if (!desktop) return;
+    if (!enabled || !desktop) return;
     const stage = stageRef.current;
     const frame = frameRef.current;
     if (!stage || !frame) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover)').matches) return;
 
     let mouseX = 0;
     let mouseY = 0;
@@ -179,7 +175,7 @@ export function CharacterStage({ local }: { local: LocalArtCollection }) {
       frame.style.transform = '';
       stage.style.opacity = '';
     };
-  }, [desktop]);
+  }, [desktop, enabled]);
 
   return (
     <div ref={stageRef} className="stage" aria-hidden="true">
@@ -212,6 +208,15 @@ export function CharacterStage({ local }: { local: LocalArtCollection }) {
                       draggable={false}
                     />
                   </picture>
+                ) : null}
+                {theme === DEFAULT_THEME && art ? (
+                  <noscript>
+                    <picture>
+                      {art.mobileUrl ? <source media="(max-width: 1023px)" srcSet={art.mobileUrl} type="image/webp" /> : null}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img className="stage-img" src={art.url} alt="" decoding="async" draggable={false} />
+                    </picture>
+                  </noscript>
                 ) : null}
               </div>
               {art?.artist && on ? (

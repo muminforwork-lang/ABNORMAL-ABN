@@ -2,26 +2,10 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useOrderContext, type OrderDetails } from '@/components/order-context';
+import { useOrderContext } from '@/components/order-context';
+import { formatOrderSummary } from '@/lib/order-summary';
 import { CopyButton } from '@/components/copy-button';
 import { DISCORD_URL, TELEGRAM_URL, WHATSAPP_URL } from '@/data/store';
-
-function orderSummary(order: OrderDetails) {
-  return [
-    'ABNORMAL — Order request',
-    `Support reference: ${order.reference}`,
-    `Product: ${order.productName}`,
-    `Platform: ${order.platform.toUpperCase()}`,
-    `Duration: ${order.duration}`,
-    `Price: ${order.priceLabel}`,
-    `Payment method: ${order.paymentMethod.toUpperCase()}`,
-    `Payment destination: ${order.paymentDestination}`,
-    order.senderNumber ? `Payment sender phone number: ${order.senderNumber}` : 'Payment sender phone number: Not required for Binance',
-    `Transaction ID/number: ${order.transactionId}`,
-    'Status: Awaiting manual payment verification',
-    'Please verify my payment. I will attach my payment proof screenshot. Thank you.',
-  ].join('\n');
-}
 
 function Info({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
   return (
@@ -39,17 +23,17 @@ export function OrderConfirmationClient() {
   if (!order) {
     return (
       <div className="panel mx-auto max-w-3xl p-7 sm:p-9">
-        <span className="eyebrow">Order confirmation</span>
-        <h1 className="mt-4 font-display text-3xl text-bone-50">No order is open</h1>
+        <span className="eyebrow">Payment summary</span>
+        <h1 className="mt-4 font-display text-3xl text-bone-50">No payment summary is open</h1>
         <p className="mt-3 text-sm leading-relaxed text-bone-300">
-          For privacy, order details are kept only in the current page session and are never saved to an account or database. Start from a product page and submit your order again. Copy the confirmation before refreshing or closing the tab.
+          For privacy, payment details are kept only in memory and are never saved to an account or database. If you have already paid, return to the product page and prepare the summary again using the same payment reference. Do not pay again just because this summary is missing.
         </p>
         <Link href="/products" className="btn btn-primary mt-6">Browse products</Link>
       </div>
     );
   }
 
-  const summary = orderSummary(order);
+  const summary = formatOrderSummary(order);
   const backToProducts = () => {
     clearOrder();
     router.push('/products');
@@ -62,12 +46,12 @@ export function OrderConfirmationClient() {
           <div className="flex items-center gap-3">
             <span className="flex h-10 w-10 items-center justify-center rounded-full border border-crimson-700/60 bg-crimson-900/30 text-crimson-200" aria-hidden="true">✓</span>
             <div>
-              <span className="eyebrow">Order request prepared</span>
-              <h1 className="mt-1 font-display text-2xl text-bone-50 sm:text-3xl">Send your payment proof</h1>
+              <span className="eyebrow">Payment summary prepared</span>
+              <h1 className="mt-1 font-display text-2xl text-bone-50 sm:text-3xl">Now send your summary and proof</h1>
             </div>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-bone-300">
-            Your details have <strong className="text-bone-100">not been uploaded or saved</strong>. Copy the summary below, then contact us on Discord, Telegram or WhatsApp, paste it there and attach your payment screenshot. Our team verifies the payment manually before delivery.
+            Your summary is ready on this device, but <strong className="text-bone-100">nothing has been sent to support</strong>. Copy it, then contact us on Discord, Telegram or WhatsApp, paste it there and attach your payment screenshot. Preparing this summary does not submit an order or verify payment.
           </p>
         </div>
         <div className="p-6 sm:p-8">
@@ -76,27 +60,27 @@ export function OrderConfirmationClient() {
               <h2 className="font-display text-xl text-bone-50">{order.productName}</h2>
               <p className="mt-1 text-sm text-bone-400">{order.platform.toUpperCase()} · {order.duration}</p>
             </div>
-            <span className="chip chip-aura">Awaiting verification</span>
+            <span className="chip">Not sent by this website</span>
           </div>
 
           <div className="mt-6 grid gap-4 border-y border-ink-700/70 py-5 sm:grid-cols-2">
-            <Info label="Price" value={order.priceLabel} />
+            <Info label="Payment amount" value={order.priceLabel} />
             <Info label="Payment method" value={order.paymentMethod.toUpperCase()} />
             <Info label={order.paymentMethod === 'binance' ? 'Binance transaction number / ID' : 'Transaction ID'} value={order.transactionId} mono />
             <Info label="Sender phone number" value={order.senderNumber || 'Not required for Binance'} mono />
             <Info label="Payment destination" value={order.paymentDestination} mono />
-            <Info label="Support reference" value={order.reference} mono />
+            <Info label="Local support reference" value={order.reference} mono />
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <CopyButton value={summary} label="Copy everything" />
+            <CopyButton value={summary} label="Copy payment summary" />
             <a href={DISCORD_URL} target="_blank" rel="noreferrer noopener" className="btn btn-primary">Open Discord ↗</a>
             <a href={TELEGRAM_URL} target="_blank" rel="noreferrer noopener" className="btn btn-ghost">Open Telegram ↗</a>
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer noopener" className="btn btn-aura">Open WhatsApp ↗</a>
           </div>
 
           <div className="panel-quiet mt-5 p-4 text-sm leading-relaxed text-bone-300">
-            <strong className="text-bone-50">What to do:</strong> create a Discord ticket (or message us on Telegram or WhatsApp), click <em>Copy everything</em>, paste the details and attach your payment proof. Make sure the transaction ID and the bKash/Nagad sender number are visible. Never share your PIN or OTP.
+            <strong className="text-bone-50">Your next step:</strong> copy the payment summary, create a Discord ticket or message us on Telegram or WhatsApp, then paste it and attach your proof. Staff can verify payment only after you send those details. Make sure the transaction ID and the bKash/Nagad sender number are visible. Never share your PIN or OTP.
           </div>
           <p className="mt-4 text-xs leading-relaxed text-bone-500">Privacy: this website does not create accounts, track orders, or store payment details. These details stay in the current page session and disappear when you refresh, navigate away, or close the tab.</p>
         </div>

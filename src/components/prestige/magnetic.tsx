@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 /** A gentle magnetic pull towards the pointer — used on primary buttons. */
 export function Magnetic({
@@ -12,13 +13,13 @@ export function Magnetic({
   strength?: number;
   className?: string;
 }) {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const node = ref.current;
     if (!node) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     let raf = 0;
     let targetX = 0;
@@ -64,7 +65,7 @@ export function Magnetic({
       node.style.removeProperty('--mag-x');
       node.style.removeProperty('--mag-y');
     };
-  }, [strength]);
+  }, [enabled, strength]);
 
   return (
     <span ref={ref} className={`magnetic ${className}`}>

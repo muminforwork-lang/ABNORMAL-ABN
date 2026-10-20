@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
 
+import { EffectsProvider } from '@/components/effects-provider';
+import { EFFECTS_BOOT_SCRIPT } from '@/lib/effects';
 import { Atmosphere } from '@/components/atmosphere';
 import { SiteIntro } from '@/components/prestige/site-intro';
 import { PointerLayer } from '@/components/prestige/pointer';
@@ -89,14 +91,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-/**
- * Runs before the first paint. It marks the document as JavaScript-enabled (so
- * reveal effects never hide content when JS is off) and shows the first-visit
- * curtain only for visitors who have not seen it this session.
- */
-const INTRO_BOOT_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');
-try{if(!sessionStorage.getItem('abn-intro-seen'))d.dataset.intro='1';}catch(e){}})();`;
-
 export const viewport: Viewport = {
   themeColor: '#04040a',
   colorScheme: 'dark',
@@ -112,33 +106,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
-        <script dangerouslySetInnerHTML={{ __html: INTRO_BOOT_SCRIPT }} />
+        <script dangerouslySetInnerHTML={{ __html: EFFECTS_BOOT_SCRIPT }} />
       </head>
       <body className="min-h-screen bg-ink-950 text-bone-200 antialiased">
-        <Atmosphere />
-        <SiteIntro />
-        <PointerLayer />
-        <ScrollHud />
-        <ThemeController />
-        <SmoothScroll />
-        <CharacterStage local={findLocalCharacters()} />
+        <EffectsProvider>
+          <Atmosphere />
+          <SiteIntro />
+          <PointerLayer />
+          <ScrollHud />
+          <ThemeController />
+          <SmoothScroll />
+          <CharacterStage local={findLocalCharacters()} />
 
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-crimson-500 focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-sm focus:text-bone-50"
-        >
-          Skip to content
-        </a>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:border focus:border-crimson-500 focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-sm focus:text-bone-50"
+          >
+            Skip to content
+          </a>
 
-        <SiteHeader productCount={PRODUCTS.length} />
+          <SiteHeader productCount={PRODUCTS.length} />
 
-        <OrderContextProvider>
-          <main id="main">
-            <RouteEntrance>{children}</RouteEntrance>
-          </main>
-        </OrderContextProvider>
+          <OrderContextProvider>
+            <main id="main">
+              <RouteEntrance>{children}</RouteEntrance>
+            </main>
+          </OrderContextProvider>
 
-        <SiteFooter />
+          <SiteFooter />
+        </EffectsProvider>
       </body>
     </html>
   );

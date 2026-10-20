@@ -53,7 +53,7 @@ export function Hero() {
   });
 
   return (
-    <section data-home className="home-hero relative isolate h-[100svh] overflow-hidden">
+    <section data-home className="home-hero relative isolate min-h-[100svh] overflow-x-clip">
       {heroImage ? (
         <div className="absolute inset-0 -z-10">
           <div className="h-full w-full bg-cover bg-center" style={{ backgroundImage: `url(${heroImage})` }} />
@@ -79,7 +79,7 @@ export function Hero() {
         <span className="hero-spine__line" />
       </div>
 
-      <div className="shell relative flex h-full flex-col">
+      <div className="hero-shell shell relative flex min-h-[100svh] flex-col">
         <div className="hero-body flex flex-1 flex-col justify-center pb-1 pt-24 sm:pt-28">
           <div className="hero-copy">
             <span className="hero-badge">

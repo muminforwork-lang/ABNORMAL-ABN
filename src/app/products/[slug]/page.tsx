@@ -8,6 +8,7 @@ import { PaymentCards, PaymentSafetyNote } from '@/components/payment-cards';
 import { Breadcrumbs } from '@/components/platform-page';
 import { PriceList } from '@/components/price-list';
 import { PurchaseForm } from '@/components/purchase-form';
+import { PurchaseSelectionProvider } from '@/components/purchase-selection';
 import { ProductGrid } from '@/components/product-grid';
 import { Reveal } from '@/components/reveal';
 import { ContactChecklist, SupportPanel } from '@/components/support-panel';
@@ -48,7 +49,7 @@ export async function generateMetadata({
 
   return {
     title: `${product.name} — ${PLATFORM_LABEL[product.platform]} prices`,
-    description: `${product.summary} Full price list: ${priceLine}. Place your order and confirm payment proof through Discord, Telegram or WhatsApp support.`,
+    description: `${product.summary} Full price list: ${priceLine}. Confirm availability and the amount with Discord, Telegram or WhatsApp support before paying. After payment, prepare a local summary and send it with your proof.`,
     alternates: { canonical: `/products/${product.slug}` },
     openGraph: {
       title: `${product.name} — ${PLATFORM_LABEL[product.platform]}`,
@@ -97,7 +98,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   };
 
   return (
-    <>
+    <PurchaseSelectionProvider key={product.slug} initialDuration={product.prices[0]?.duration ?? ''}>
       <script
         type="application/ld+json"
         // Static, owner-controlled data — no user input is interpolated here.
@@ -219,7 +220,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <SectionHeading
           eyebrow="Purchase instructions"
           title={`How to order ${product.name}`}
-          description="Choose a duration, select your payment method and submit the transaction reference. Our team verifies every order manually."
+          description="Confirm the product, duration and amount with support before paying. After payment, prepare a local summary and send it with your proof for manual verification."
         />
 
         <div className="mt-8"><PurchaseForm product={product} /></div>
@@ -267,8 +268,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <div className="mt-10">
           <h3 className="text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-bone-400">
-            Accepted payment methods
+            Store payment methods
           </h3>
+          <p className="mt-2 text-sm leading-relaxed text-bone-400">
+            The selector above shows which methods have a listed amount for your chosen duration.
+            Confirm any other currency with support before paying; this site does not convert prices.
+          </p>
           <PaymentCards className="mt-5" />
         </div>
 
@@ -277,7 +282,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             Contact to purchase
           </h3>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-bone-400">
-            Both channels reach the same team. Mention <span className="text-bone-200">{product.name}</span>{' '}
+            All three channels reach the same team. Mention <span className="text-bone-200">{product.name}</span>{' '}
             and the duration you want so nothing gets mixed up.
           </p>
           <SupportPanel productName={product.name} className="mt-6" />
@@ -307,6 +312,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <ProductGrid products={related} className="mt-10" />
         </section>
       ) : null}
-    </>
+    </PurchaseSelectionProvider>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useEffects } from '@/components/effects-provider';
 
 /**
  * PC-only atmosphere: a quiet CRT scanline sheet behind the page content and a
@@ -11,13 +12,13 @@ import { useEffect, useRef } from 'react';
  * is reused, never appended to, so it cannot grow while you move the mouse.
  */
 export function CursorTrail({ size = 7, life = 620 }: { size?: number; life?: number }) {
+  const { enabled } = useEffects();
   const ref = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    if (!enabled) return;
     const host = ref.current;
     if (!host) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     const COUNT = 14;
     const nodes = Array.from({ length: COUNT }, () => {
@@ -64,7 +65,7 @@ export function CursorTrail({ size = 7, life = 620 }: { size?: number; life?: nu
       window.cancelAnimationFrame(raf);
       for (const node of nodes) node.remove();
     };
-  }, [life]);
+  }, [enabled, life]);
 
   return <div ref={ref} className="trail" aria-hidden="true" style={{ ['--trail-size' as string]: `${size}px`, ['--trail-life' as string]: `${life}ms` }} />;
 }

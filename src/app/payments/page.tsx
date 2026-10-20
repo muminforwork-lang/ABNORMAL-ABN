@@ -20,12 +20,12 @@ const FAQ = [
   {
     question: 'How do I pay with bKash or Nagad?',
     answer:
-      'Send the exact amount for the duration you chose to the number listed above, then send us the transaction ID on Discord, Telegram or WhatsApp so we can match your payment.',
+      'First confirm the product, duration and BDT amount with support. Then send that amount to the listed account, keep your transaction ID, and prepare a summary. Send the summary and payment proof yourself through Discord, Telegram or WhatsApp.',
   },
   {
     question: 'Which currency should I send?',
     answer:
-      'Every product lists its own prices in USD and BDT. bKash and Nagad are BDT transfers; Binance is used for USD amounts. Confirm the final amount with support before sending if anything is unclear.',
+      'Use a currency listed for your exact duration. bKash and Nagad use BDT; Binance uses the listed USD amount. If a currency is not listed, ask support to confirm an amount before paying. This website never converts prices automatically.',
   },
   {
     question: 'Where do I receive my access?',
@@ -49,13 +49,14 @@ export default function PaymentsPage() {
           <div className="max-w-3xl">
             <span className="eyebrow">Payment methods · {PAYMENT_METHODS.length} options</span>
             <h1 className="mt-5 font-display text-[clamp(2.1rem,5.4vw,3.4rem)] font-semibold leading-[1.08] tracking-tight text-bone-50">
-              <SplitText text={'Pay, confirm, receive'} playOnMount stagger={85} />
+              <SplitText text={'Confirm, pay, send proof'} playOnMount stagger={85} />
             </h1>
             <p className="mt-5 text-[0.98rem] leading-relaxed text-bone-300">
-              Choose the product and duration, send the exact amount, then submit an order with
-              the transaction ID (and sender phone number for bKash/Nagad). After you place the
-              order, copy its summary and attach payment proof in a Discord ticket or send it through Telegram or WhatsApp.
-              Every payment is checked manually by our team.
+              Confirm the product, duration, amount and payment method with support before paying.
+              After payment, prepare a summary on the product page using your transaction ID
+              and sender phone number for bKash/Nagad. Copy it, then send it with payment proof
+              through Discord, Telegram or WhatsApp. This website does not submit your details;
+              staff verify the proof you send before delivery.
             </p>
           </div>
 
@@ -70,8 +71,8 @@ export default function PaymentsPage() {
                 </h2>
                 <ul className="mt-3 space-y-2 text-sm text-bone-300">
                   <li>1. Choose the exact product and duration.</li>
-                  <li>2. Write down the price shown on that product page.</li>
-                  <li>3. Ask support if anything is unclear — before paying.</li>
+                  <li>2. Check the listed amount and currency for that duration.</li>
+                  <li>3. Confirm availability, the amount and payment method with support before paying.</li>
                 </ul>
               </div>
             </div>

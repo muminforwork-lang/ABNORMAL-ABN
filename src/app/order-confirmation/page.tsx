@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { OrderConfirmationClient } from '@/components/order-confirmation-client';
 
 export const metadata: Metadata = {
-  title: 'Order confirmation',
-  description: 'Copy your order summary and send payment proof to support for manual verification.',
+  title: 'Payment summary',
+  description: 'This website only prepares a local payment summary. Copy it and send it with payment proof to support for manual verification.',
   robots: { index: false, follow: false },
 };
 

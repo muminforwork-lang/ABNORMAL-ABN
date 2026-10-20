@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react';
 import Lenis from 'lenis';
+import { useEffects } from '@/components/effects-provider';
+import { watchMediaQuery } from '@/lib/effects';
 
 /**
  * Buttery desktop scrolling.
@@ -17,10 +19,10 @@ import Lenis from 'lenis';
  *   (use it on inner scroll boxes such as menus).
  */
 export function SmoothScroll() {
+  const { enabled } = useEffects();
   useEffect(() => {
-    const query = window.matchMedia(
-      '(min-width: 1024px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)',
-    );
+    if (!enabled) return;
+    const query = window.matchMedia('(min-width: 1024px)');
 
     let lenis: Lenis | null = null;
     let frame = 0;
@@ -42,6 +44,7 @@ export function SmoothScroll() {
         anchors: false,
       });
       (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+      if (document.documentElement.classList.contains('scroll-locked')) lenis.stop();
       frame = window.requestAnimationFrame(raf);
 
       const onClick = (event: MouseEvent) => {
@@ -73,12 +76,12 @@ export function SmoothScroll() {
 
     const sync = () => (query.matches ? start() : stop());
     sync();
-    query.addEventListener('change', sync);
+    const stopQuery = watchMediaQuery(query, sync);
     return () => {
-      query.removeEventListener('change', sync);
+      stopQuery();
       stop();
     };
-  }, []);
+  }, [enabled]);
 
   return null;
 }
